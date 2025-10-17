@@ -1,0 +1,44 @@
+/* src/components/TopHeader/TopHeader.module.css */
+
+.headerContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 10px 0 10px; /* Padding for spacing from edges */
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.headerContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionGroup {
+  display: flex;
+  gap: 0.5rem; /* Space between the search and cart buttons */
+}
+
+.iconButton {
+  background-color: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(82, 82, 91, 0.8);
+  border-radius: 50%; /* Makes the buttons perfectly circular */
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #a1a1aa; /* Default icon color */
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
+
+.iconButton:hover {
+  color: #facc15; /* Amber color on hover */
+  border-color: #facc15;
+}

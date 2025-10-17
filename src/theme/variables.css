@@ -1,2 +1,8 @@
-/* For information on how to create your own theme, please see:
-http://ionicframework.com/docs/theming/ */
+/* src/theme/variables.css */
+    /* ... inside the :root { ... } block */
+
+    /* -- Floating Action Button Styling -- */
+    ion-fab-button {
+      --background: #facc15; /* amber-400 */
+      --color: #18181b; /* Icon color - zinc-900 */
+    }
