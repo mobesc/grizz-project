@@ -1,18 +1,210 @@
 /* src/pages/Home/Home.module.css */
-/* Find the .heroSection rule and add the padding-top property */
 
+/* -- FONT & GLOBAL STYLES -- */
+.mainContainer {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* -- SECTIONS & CONTAINERS -- */
+.section {
+  padding: 5rem 0;
+}
+
+.bgZinc900 {
+  background-color: #18181b;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.textContainer {
+  max-width: 896px; /* Corresponds to max-w-4xl */
+  text-align: center;
+}
+
+.textContainer p {
+  font-size: 1.125rem;
+  color: #d4d4d8;
+  line-height: 1.75;
+}
+
+.sectionHeader {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.75rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sectionUnderline {
+  width: 6rem;
+  height: 4px;
+  background-color: #facc15;
+  margin: 0 auto 2rem auto;
+}
+
+/* -- HERO SECTION -- */
 .heroSection {
   min-height: 100vh;
-  /* ADD THIS LINE to create space for the new top header */
-  padding-top: 80px; 
+  padding-top: 80px; /* Space for the floating TopHeader */
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('https://images.unsplash.com/photo-1588704406244-d762141fc78b?q=80&w=2940&auto-format&fit=crop');
+  background-image: url('https://media.istockphoto.com/id/1927555380/photo/hands-holding-lager-light-foamy-big-beer-glasses-and-clinking-two-friends-sitting-in-bar-and.jpg?s=612x612&w=0&k=20&c=Ff5GFAv6FfAsyqgHYBkVxkgDvTlVYsx2ro4IYDfVExY=');
   background-size: cover;
   background-position: center;
   position: relative;
   text-align: center;
 }
 
-/* ... rest of your Home.module.css file ... */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  margin-top: -10vh; /* Lifts the text up slightly */
+}
+
+.heroTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem; /* 8xl */
+  letter-spacing: 0.1em;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  color: #facc15;
+  margin-top: 1rem;
+  max-width: 42rem;
+}
+
+/* --- NEW SNEAK PEEK STYLES --- */
+.sneakPeekSection {
+  padding: 3rem 0;
+}
+
+.sneakPeekHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.sneakPeekHeader .sectionHeader {
+  margin-bottom: 0;
+  font-size: 2.5rem; /* A bit smaller than the main section titles */
+  text-align: left;
+}
+
+.seeMoreButton {
+  background: none;
+  border: none;
+  color: #facc15; /* Amber color */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.productScroll {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  /* Hides the scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.productScroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.productCard {
+  /* This creates the card */
+  flex: 0 0 280px; /* Flex-shrink: 0, Flex-grow: 0, Basis: 280px */
+  margin-right: 1.5rem;
+  background-color: #18181b; /* zinc-900 */
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(82, 82, 91, 0.8);
+}
+
+.productImage {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background-color: #000;
+  padding: 1rem;
+}
+
+.productInfo {
+  padding: 1.5rem;
+}
+
+.productName {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: #facc15;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.25rem 0;
+}
+
+.productType {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+
+/* -- CTA BUTTON & FOOTER -- */
+.ctaButton {
+  display: inline-block;
+  background-color: #facc15;
+  color: #000;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 0.125rem;
+  font-size: 1.125rem;
+  margin-top: 2rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #f59e0b; /* amber-500 */
+}
+
+.footer {
+  background-color: #18181b;
+  padding: 2rem 0;
+  text-align: center;
+  color: #71717a;
+}
+
+.footerLogo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+/* -- RESPONSIVE DESIGN -- */
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: 6rem; /* 9xl */
+  }
+  .heroSubtitle {
+    font-size: 1.25rem;
+  }
+}

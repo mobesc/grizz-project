@@ -1,9 +1,33 @@
-// src/pages/Home.tsx
+// src/pages/Home/Home.tsx
 
-import { IonContent, IonPage } from '@ionic/react';
+import { IonContent, IonPage, useIonRouter } from '@ionic/react';
 import styles from './Home.module.css';
 
+// We can re-use the BeerCard component logic here
+const BeerCard: React.FC<{ name: string; type: string; imageUrl: string; }> = ({ name, type, imageUrl }) => (
+    <div className={styles.productCard}>
+        <img src={imageUrl} alt={name} className={styles.productImage} onError={(e) => { (e.target as HTMLImageElement).src='https://placehold.co/400x400/18181b/facc15?text=GRIZZ'; }}/>
+        <div className={styles.productInfo}>
+            <h3 className={styles.productName}>{name}</h3>
+            <p className={styles.productType}>{type}</p>
+        </div>
+    </div>
+);
+
 const Home: React.FC = () => {
+  const router = useIonRouter();
+
+  // A helper function for the "See More" button
+  const goToBeerPage = () => {
+    router.push('/beers', 'root', 'replace');
+  };
+
+  const featuredBeers = [
+    { name: 'GRIZZLY GOLD', type: 'Golden Ale', imageUrl: '/assets/beer-placeholder-1.png' },
+    { name: 'MIDNIGHT PAWS', type: 'Porter', imageUrl: '/assets/beer-placeholder-2.png' },
+    { name: 'FOREST HAZE', type: 'Hazy IPA', imageUrl: '/assets/beer-placeholder-3.png' },
+  ];
+
   return (
     <IonPage>
       <IonContent fullscreen={true}>
@@ -19,8 +43,21 @@ const Home: React.FC = () => {
               </div>
             </section>
             
+            {/* --- NEW PRODUCT SNEAK PEEK SECTION --- */}
+            <section id="sneak-peek" className={styles.sneakPeekSection}>
+              <div className={styles.sneakPeekHeader}>
+                <h2 className={styles.sectionHeader}>OUR BEERS</h2>
+                <button onClick={goToBeerPage} className={styles.seeMoreButton}>See More</button>
+              </div>
+              <div className={styles.productScroll}>
+                {featuredBeers.map((beer, index) => (
+                  <BeerCard key={index} {...beer} />
+                ))}
+              </div>
+            </section>
+            
             {/* -- Contact Section -- */}
-            <section id="contact" className={styles.section}>
+            <section id="contact" className={`${styles.section} ${styles.bgZinc900}`}>
               <div className={`${styles.container} ${styles.textContainer}`}>
                   <h2 className={styles.sectionHeader}>GET IN TOUCH</h2>
                   <div className={styles.sectionUnderline}></div>

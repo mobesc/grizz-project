@@ -1,0 +1,77 @@
+/* src/components/SideMenu/SideMenu.module.css */
+
+.sideMenu {
+  /* This creates the frosted glass effect */
+  --background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(82, 82, 91, 0.8);
+}
+
+/* -- New Profile Section Styles -- */
+.profileSection {
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid rgba(82, 82, 91, 0.8);
+}
+
+.profileImage {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #facc15; /* Amber border */
+  margin-bottom: 0.75rem;
+  background: #3f3f46; /* zinc-700 */
+}
+
+.profileImage ion-icon {
+  width: 100%;
+  height: 100%;
+  color: #a1a1aa; /* zinc-400 */
+}
+
+.profileName {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.profileNumber {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #a1a1aa; /* zinc-400 */
+  margin: 0;
+}
+
+/* -- Menu List Styles -- */
+.menuList {
+  background: transparent;
+  padding-top: 1rem;
+}
+
+.menuItem {
+  --background: transparent;
+  --color: #d4d4d8;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --inner-padding-end: 20px;
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.menuItem:hover {
+  --color: #ffffff;
+  --background: rgba(250, 204, 21, 0.1); /* Faint amber on hover */
+}
+
+.menuIcon {
+  color: #a1a1aa;
+  font-size: 1.2rem;
+}
+
+.menuItem:hover .menuIcon {
+  color: #facc15;
+}
