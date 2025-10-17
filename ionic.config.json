@@ -1,0 +1,7 @@
+{
+  "name": "grizz-project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
