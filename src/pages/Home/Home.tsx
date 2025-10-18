@@ -2,11 +2,12 @@
 
 import { IonContent, IonPage, useIonRouter } from '@ionic/react';
 import styles from './Home.module.css';
+import Footer from '../../components/Footer/Footer'; // 1. IMPORT THE NEW FOOTER
 
 // We can re-use the BeerCard component logic here
 const BeerCard: React.FC<{ name: string; type: string; imageUrl: string; }> = ({ name, type, imageUrl }) => (
     <div className={styles.productCard}>
-        <img src={imageUrl} alt={name} className={styles.productImage} onError={(e) => { (e.target as HTMLImageElement).src='https://placehold.co/400x400/18181b/facc15?text=GRIZZ'; }}/>
+        <img src={imageUrl} alt={name} className={styles.productImage} onError={(e) => { (e.target as HTMLImageElement).src='https://placehold.co/400x400/f4f4f5/facc15?text=GRIZZ'; }}/>
         <div className={styles.productInfo}>
             <h3 className={styles.productName}>{name}</h3>
             <p className={styles.productType}>{type}</p>
@@ -17,7 +18,6 @@ const BeerCard: React.FC<{ name: string; type: string; imageUrl: string; }> = ({
 const Home: React.FC = () => {
   const router = useIonRouter();
 
-  // A helper function for the "See More" button
   const goToBeerPage = () => {
     router.push('/beers', 'root', 'replace');
   };
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
               </div>
             </section>
             
-            {/* --- NEW PRODUCT SNEAK PEEK SECTION --- */}
+            {/* --- PRODUCT SNEAK PEEK SECTION --- */}
             <section id="sneak-peek" className={styles.sneakPeekSection}>
               <div className={styles.sneakPeekHeader}>
                 <h2 className={styles.sectionHeader}>OUR BEERS</h2>
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
             </section>
             
             {/* -- Contact Section -- */}
-            <section id="contact" className={`${styles.section} ${styles.bgZinc900}`}>
+            <section id="contact" className={styles.section}>
               <div className={`${styles.container} ${styles.textContainer}`}>
                   <h2 className={styles.sectionHeader}>GET IN TOUCH</h2>
                   <div className={styles.sectionUnderline}></div>
@@ -71,13 +71,9 @@ const Home: React.FC = () => {
             </section>
           </main>
           
-          {/* -- Footer -- */}
-          <footer className={styles.footer}>
-            <div className={styles.container}>
-              <p className={styles.footerLogo}>GRIZZ BEER CO.</p>
-              <p>&copy; {new Date().getFullYear()} GRIZZ Beer Company. All Rights Reserved. Drink Responsibly.</p>
-            </div>
-          </footer>
+          {/* -- 2. REPLACE THE OLD FOOTER WITH THE NEW COMPONENT -- */}
+          <Footer />
+          
         </div>
       </IonContent>
     </IonPage>

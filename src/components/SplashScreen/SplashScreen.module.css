@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #000; /* Solid black background */
+  background-color: #ffffff; /* Solid black background */
 }
 
 .logo {
@@ -24,10 +24,7 @@
   border-radius: 50%;
   position: relative;
   margin-top: 1.5rem;
-  
-  /* REVERSED GRADIENT: Fades from transparent (the tail) 
-    up to solid amber (the head) over 75% of the circle.
-  */
+ 
   background: conic-gradient(from 0deg, transparent 0%, #facc15 75%);
   
   animation: 
@@ -44,7 +41,7 @@
   transform: translate(-50%, -50%);
   width: 32px;
   height: 32px;
-  background: #000; /* Must match the .splashContainer background */
+  background: #ffffff; /* Must match the .splashContainer background */
   border-radius: 50%;
 }
 

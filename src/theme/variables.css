@@ -1,8 +1,39 @@
 /* src/theme/variables.css */
-    /* ... inside the :root { ... } block */
 
-    /* -- Floating Action Button Styling -- */
-    ion-fab-button {
-      --background: #facc15; /* amber-400 */
-      --color: #18181b; /* Icon color - zinc-900 */
-    }
+:root {
+  /* Set the base font */
+  font-family: 'Montserrat', sans-serif;
+
+  /*
+   * Base App Colors
+   */
+  --ion-color-primary: #facc15;
+  --ion-color-primary-rgb: 250, 204, 21;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #daac13;
+  --ion-color-primary-tint: #f4c92d;
+
+  /*
+   * App Theme
+   */
+
+  /* Set the default text color to dark */
+  --ion-text-color: #18181b;
+
+  /* Set the main app background to a light grey */
+  --ion-background-color: #f9f9f9;
+
+  /* -- App Styling for GRIZZ Theme -- */
+
+  /* Default Toolbar Styling (for any future solid headers) */
+  ion-toolbar {
+    --background: #ffffff;
+    --color: #18181b;
+  }
+
+  /* Main Page Background */
+  ion-content {
+    --background: #f9f9f9;
+  }
+}

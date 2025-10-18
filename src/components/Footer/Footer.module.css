@@ -1,0 +1,137 @@
+/* src/components/Footer/Footer.module.css */
+
+.footer {
+  background-color: #18181b; /* Dark background (zinc-900) */
+  color: #a1a1aa; /* Light grey text (zinc-400) */
+  padding: 4rem 0 0 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.25rem;
+  letter-spacing: 0.1em;
+  color: #facc15;
+  margin: 0 0 0.5rem 0;
+}
+
+.brandColumn p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 250px;
+}
+
+.linksColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.columnTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.linksColumn a {
+  color: #a1a1aa;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.linksColumn a:hover {
+  color: #facc15;
+}
+
+.subscribeColumn p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.subscribeForm {
+  display: flex;
+}
+
+.subscribeForm input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #3f3f46;
+  background-color: #27272a;
+  border-radius: 4px 0 0 4px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.subscribeForm button {
+  padding: 0 1.25rem;
+  border: none;
+  background-color: #facc15;
+  color: #000;
+  font-size: 1.5rem;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+/* -- Bottom Bar -- */
+.bottomBar {
+  padding: 2rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid #3f3f46; /* zinc-700 */
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.bottomBar p {
+  margin: 0;
+  text-align: center;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.socialIcons a {
+  color: #a1a1aa;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #facc15;
+}
+
+/* -- Responsive Grid -- */
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 2fr 1fr 1fr 2fr; /* 4-column layout */
+  }
+
+  .bottomBar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

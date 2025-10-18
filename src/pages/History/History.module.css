@@ -1,13 +1,11 @@
-/* src/pages/About/About.module.css */
+/* src/pages/History/History.module.css */
+
 .mainContainer {
-  background-color: #f9f9f9;
-  color: #18181b;
+  background-color: #f9f9f9; /* Light background */
+  color: #18181b; /* Dark text */
   font-family: 'Montserrat', sans-serif;
   min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 70px; /* <-- ADJUSTED PADDING */
+  padding-top: 80px; /* Space for the floating TopHeader */
 }
 
 .section {
@@ -35,9 +33,9 @@
   margin: 0 auto 2rem auto;
 }
 
-.aboutText {
+.historyText {
   font-size: 1.1rem;
-  color: #3f3f46;
+  color: #3f3f46; /* Dark text */
   line-height: 1.75;
   margin-bottom: 1.5rem;
   text-align: left;

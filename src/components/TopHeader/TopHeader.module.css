@@ -5,40 +5,76 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 10px 0 10px; /* Padding for spacing from edges */
   z-index: 1000;
   box-sizing: border-box;
 }
 
-.headerContent {
+.headerBar {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  /* --- DARK "GLASS" EFFECT --- */
+  background-color: rgba(24, 24, 27, 0.7); /* zinc-900 with transparency */
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(82, 82, 91, 0.8); /* zinc-700 border */
+  
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
 }
 
-.actionGroup {
+.leftGroup, .rightGroup {
+  flex: 1;
+}
+
+.leftGroup {
   display: flex;
-  gap: 0.5rem; /* Space between the search and cart buttons */
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.centerGroup {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.rightGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: #facc15; /* Amber color */
+  letter-spacing: 0.1em;
+  margin: 0;
+  font-weight: bold;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .iconButton {
-  background-color: rgba(24, 24, 27, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(82, 82, 91, 0.8);
-  border-radius: 50%; /* Makes the buttons perfectly circular */
+  background: none;
+  border: none;
+  border-radius: 50%;
   width: 44px;
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #a1a1aa; /* Default icon color */
-  font-size: 1.4rem;
+  
+  color: #a1a1aa; /* Light icons (zinc-400) */
+  
+  font-size: 1.7rem;
   transition: all 0.3s ease;
+  --ion-icon-stroke-width: 40px;
 }
 
 .iconButton:hover {
-  color: #facc15; /* Amber color on hover */
-  border-color: #facc15;
+  color: #facc15; /* Amber hover */
 }

@@ -1,5 +1,6 @@
 // src/components/SideMenu/SideMenu.tsx
 
+import React from 'react';
 import {
   IonContent,
   IonIcon,
@@ -7,51 +8,81 @@ import {
   IonLabel,
   IonList,
   IonMenu,
-  IonAvatar
+  IonAvatar,
+  HTMLIonMenuElement
 } from '@ionic/react';
 import {
+  homeOutline,
+  beerOutline,
+  informationCircleOutline,
   businessOutline,
   callOutline,
   codeSlashOutline,
   cogOutline,
   documentTextOutline,
-  personCircleOutline,
   bookOutline
+  // Removed logInOutline
 } from 'ionicons/icons';
 import styles from './SideMenu.module.css';
 
-const SideMenu: React.FC = () => {
-  // Your new list of menu items
+// 1. Define the props
+interface SideMenuProps {
+  menuRef: React.RefObject<HTMLIonMenuElement>;
+  onClose: () => void;
+}
+
+const SideMenu: React.FC<SideMenuProps> = ({ menuRef, onClose }) => {
   const menuItems = [
-    { text: 'My Account', icon: personCircleOutline, path: '/account' },
+    { text: 'Home', icon: homeOutline, path: '/home' },
+    { text: 'Our Beers', icon: beerOutline, path: '/beers' },
+    { text: 'About Us', icon: informationCircleOutline, path: '/about' },
     { text: 'Company History', icon: bookOutline, path: '/history' },
     { text: 'About our Products', icon: documentTextOutline, path: '/product-info' },
     { text: 'Developers', icon: codeSlashOutline, path: '/developers' },
     { text: 'Contact Us', icon: callOutline, path: '/contact' },
     { text: 'Find Us', icon: businessOutline, path: '/locations' },
     { text: 'Settings', icon: cogOutline, path: '/settings' },
+    // Removed 'Login / Register' from this list
   ];
 
   return (
-    <IonMenu contentId="main-content" type="overlay" className={styles.sideMenu}>
+    <IonMenu 
+      ref={menuRef}
+      contentId="main-content" 
+      type="overlay" 
+      className={styles.sideMenu}
+    >
       <IonContent>
-        {/* -- User Profile Section -- */}
-        <div className={styles.profileSection}>
-          <IonAvatar className={styles.profileImage}>
-            {/* Using an icon as a placeholder. Replace 'src' with a real image URL when ready. */}
-            <IonIcon icon={personCircleOutline} />
-          </IonAvatar>
-          <h2 className={styles.profileName}>Guest User</h2>
-          <p className={styles.profileNumber}>+63 912 345 6789</p>
-        </div>
-
-        {/* -- Navigation List -- */}
+        {/* Navigation List */}
         <IonList className={styles.menuList}>
           {menuItems.map((item, index) => (
-            <IonItem key={index} routerLink={item.path} routerDirection="none" lines="none" className={styles.menuItem}>
-              <IonIcon slot="start" icon={item.icon} className={styles.menuIcon} />
-              <IonLabel>{item.text}</IonLabel>
-            </IonItem>
+            item.text === 'About Us' ? (
+              <React.Fragment key={index}>
+                <IonItem 
+                  routerLink={item.path} 
+                  routerDirection="none" 
+                  lines="none" 
+                  className={styles.menuItem} 
+                  onClick={onClose}
+                >
+                  <IonIcon slot="start" icon={item.icon} className={styles.menuIcon} />
+                  <IonLabel>{item.text}</IonLabel>
+                </IonItem>
+                <div className={styles.divider}></div>
+              </React.Fragment>
+            ) : (
+              <IonItem 
+                key={index} 
+                routerLink={item.path} 
+                routerDirection="none" 
+                lines="none" 
+                className={styles.menuItem} 
+                onClick={onClose}
+              >
+                <IonIcon slot="start" icon={item.icon} className={styles.menuIcon} />
+                <IonLabel>{item.text}</IonLabel>
+              </IonItem>
+            )
           ))}
         </IonList>
       </IonContent>
