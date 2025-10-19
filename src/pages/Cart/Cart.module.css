@@ -1,0 +1,44 @@
+/* src/pages/Cart/Cart.module.css */
+.mainContainer {
+  background-color: #f9f9f9;
+  color: #18181b;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px; /* <-- ADJUSTED PADDING */
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.container {
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.sectionHeader {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.75rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.sectionUnderline {
+  width: 6rem;
+  height: 4px;
+  background-color: #facc15;
+  margin: 0 auto 2rem auto;
+}
+
+.cartText {
+  font-size: 1.1rem;
+  color: #3f3f46;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}

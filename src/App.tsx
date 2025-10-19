@@ -5,7 +5,7 @@ import {
   IonApp,
   IonRouterOutlet,
   setupIonicReact,
-  HTMLIonMenuElement // Import the type for our menu element
+  // HTMLIonMenuElement is a global type and does not need to be imported.
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { useState, useEffect, useRef } from 'react'; // Import useRef
@@ -15,6 +15,10 @@ import Home from './pages/Home/Home';
 import Beers from './pages/Beers/Beers';
 import About from './pages/About/About';
 import History from './pages/History/History';
+import Profile from './pages/Profile/Profile';
+import Cart from './pages/Cart/Cart';
+import Contact from './pages/Contact/Contact';
+
 
 // Import Global UI Components
 import TopHeader from './components/TopHeader/TopHeader';
@@ -82,13 +86,15 @@ const App: React.FC = () => {
           <Route exact path="/home" component={Home} />
           <Route exact path="/beers" component={Beers} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/contact" component={Contact} />
           
           {/* Side Menu Routes */}
           <Route exact path="/history" component={History} />
           <Route exact path="/login" component={Home} />
           <Route exact path="/product-info" component={Home} />
           <Route exact path="/developers" component={Home} />
-          <Route exact path="/contact" component={Home} />
           <Route exact path="/locations" component={Home} />
           <Route exact path="/settings" component={Home} />
 

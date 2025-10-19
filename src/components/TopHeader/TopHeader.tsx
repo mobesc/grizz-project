@@ -11,8 +11,12 @@ interface TopHeaderProps {
 const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle }) => {
   const router = useIonRouter();
 
-  const goToLogin = () => {
-    router.push('/login', 'root', 'replace');
+  const goToProfile = () => {
+    router.push('/profile', 'root', 'replace');
+  };
+
+  const goToCart = () => {
+    router.push('/cart', 'root', 'replace');
   };
   
   return (
@@ -24,7 +28,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle }) => {
           <button className={styles.iconButton} onClick={onMenuToggle}>
             <IonIcon icon={menuOutline} />
           </button>
-          <button className={styles.iconButton} onClick={goToLogin}>
+          <button className={styles.iconButton} onClick={goToProfile}>
             <IonIcon icon={personOutline} /> {/* Updated icon here */}
           </button>
         </div>
@@ -39,7 +43,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle }) => {
           <button className={styles.iconButton}>
             <IonIcon icon={searchOutline} />
           </button>
-          <button className={styles.iconButton}>
+          <button className={styles.iconButton} onClick={goToCart}>
             <IonIcon icon={cartOutline} />
           </button>
         </div>

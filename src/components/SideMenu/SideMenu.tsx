@@ -8,8 +8,7 @@ import {
   IonLabel,
   IonList,
   IonMenu,
-  IonAvatar,
-  HTMLIonMenuElement
+  // HTMLIonMenuElement is a global type and does not need to be imported.
 } from '@ionic/react';
 import {
   homeOutline,
@@ -20,7 +19,9 @@ import {
   codeSlashOutline,
   cogOutline,
   documentTextOutline,
-  bookOutline
+  bookOutline,
+  personOutline,
+  cartOutline
   // Removed logInOutline
 } from 'ionicons/icons';
 import styles from './SideMenu.module.css';
@@ -42,6 +43,8 @@ const SideMenu: React.FC<SideMenuProps> = ({ menuRef, onClose }) => {
     { text: 'Contact Us', icon: callOutline, path: '/contact' },
     { text: 'Find Us', icon: businessOutline, path: '/locations' },
     { text: 'Settings', icon: cogOutline, path: '/settings' },
+    { text: 'Profile', icon: personOutline, path: '/profile' },
+    { text: 'Cart', icon: cartOutline, path: '/cart' },
     // Removed 'Login / Register' from this list
   ];
 
