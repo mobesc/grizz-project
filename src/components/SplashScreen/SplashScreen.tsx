@@ -8,7 +8,12 @@ const SplashScreen: React.FC = () => {
     <IonPage>
       <IonContent fullscreen>
         <div className={styles.splashContainer}>
-          <h1 className={styles.logo}>GRIZZ</h1>
+          {/* Replaced H1 text with the logo image */}
+          <img 
+            src="/assets/LOGO_ONLY.png" 
+            alt="GRIZZ Logo" 
+            className={styles.logoImage} 
+          />
           <div className={styles.spinner}></div>
         </div>
       </IonContent>

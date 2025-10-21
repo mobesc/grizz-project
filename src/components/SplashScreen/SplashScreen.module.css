@@ -6,14 +6,14 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #ffffff; /* Solid black background */
+  background-color: #ffffff; /* Solid white background */
 }
 
-.logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 6rem;
-  letter-spacing: 0.1em;
-  color: #facc15; /* Amber color */
+/* Removed the .logo text style */
+/* Added .logoImage style */
+.logoImage {
+  width: 150px; /* Adjust size as needed */
+  height: auto;
   animation: fadeIn 1.5s ease-in-out;
 }
 
