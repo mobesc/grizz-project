@@ -1,0 +1,168 @@
+/* src/pages/ProductPage/ProductPage.module.css */
+
+.mainContainer {
+  background-color: #f9f9f9;
+  color: #18181b;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100%;
+  padding-top: 80px; /* Space for header */
+  padding-bottom: 4rem; /* Restore original padding */
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem; /* Restore original padding */
+}
+
+.backButton {
+  --color: #71717a;
+  font-weight: 600;
+  margin-bottom: 1.5rem; /* Restore original margin */
+  padding-left: 0;
+}
+.backButton:hover {
+  --color: #facc15;
+}
+
+.productLayout {
+  display: grid;
+  grid-template-columns: 1fr; /* Default single column */
+  gap: 2rem; /* Restore original gap */
+}
+
+.imageColumn {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align image to top */
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 2rem; /* Restore original padding */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.productImage {
+  max-width: 100%;
+  max-height: 400px; /* Restore original max-height */
+  object-fit: contain;
+}
+
+.detailsColumn {
+  padding-top: 1rem; /* Space on mobile */
+}
+
+.productName {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem; /* Restore original font size */
+  letter-spacing: 0.05em;
+  color: #18181b;
+  margin-bottom: 0.25rem; /* Restore original margin */
+}
+
+.productType {
+  font-size: 1rem; /* Restore original font size */
+  color: #71717a;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem; /* Reduced margin before rating */
+  font-weight: 600;
+}
+
+/* --- Added Rating Styles --- */
+.ratingContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; /* Space below ratings */
+    gap: 0.2rem; /* Small gap between stars */
+}
+
+.starIcon {
+    color: #facc15; /* Amber color for stars */
+    font-size: 1.1rem; /* Adjust size as needed */
+}
+
+.reviewCount {
+    margin-left: 0.5rem; /* Space between stars and count */
+    font-size: 0.85rem;
+    color: #71717a;
+}
+/* --- End Rating Styles --- */
+
+.productPrice {
+  font-size: 1.75rem; /* Restore original font size */
+  font-weight: bold;
+  color: #18181b;
+  margin-bottom: 1rem; /* Restore original margin */
+}
+
+/* --- Re-enabled Specs --- */
+.specs {
+  display: flex; /* Make visible again */
+  gap: 1.5rem; /* Restore original gap */
+  margin-bottom: 0.5rem; /* Restore original margin */
+  font-size: 0.9rem; /* Restore original font size */
+  color: #52525b;
+}
+
+.specs span {
+  font-weight: 600;
+}
+/* --- End Specs --- */
+
+.productVolume,
+.productAvailability {
+  font-size: 0.9rem; /* Restore original font size */
+  color: #52525b;
+  margin-bottom: 0.5rem; /* Restore original margin */
+}
+/* Re-enable Availability */
+.productAvailability {
+    display: block;
+}
+
+.descriptionHeader {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; /* Restore original font size */
+  letter-spacing: 0.05em;
+  margin-top: 2rem; /* Restore original margin */
+  margin-bottom: 0.75rem; /* Restore original margin */
+  border-bottom: 2px solid #facc15;
+  padding-bottom: 0.25rem; /* Restore original padding */
+  display: inline-block;
+}
+
+.productDescription {
+  color: #3f3f46;
+  font-size: 1rem; /* Restore original font size */
+  line-height: 1.6; /* Restore original line height */
+  margin-bottom: 2rem; /* Restore original margin */
+  /* Remove line clamping */
+  overflow: visible;
+  display: block;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+}
+
+.addToCartButton {
+  --background: #facc15;
+  --background-hover: #eab308;
+  --color: #000;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 1.5rem; /* Restore original margin */
+  margin-bottom: 0; /* Remove specific mobile margin */
+  --border-radius: 4px;
+  font-size: 1rem; /* Restore original font size */
+  --padding-top: 0.75rem; /* Restore original padding */
+  --padding-bottom: 0.75rem; /* Restore original padding */
+}
+
+/* Responsive layout for medium screens and up */
+@media (min-width: 768px) {
+  .productLayout {
+    grid-template-columns: 1fr 1.5fr; /* 2 columns */
+    gap: 3rem;
+  }
+  .detailsColumn {
+    padding-top: 0;
+  }
+}

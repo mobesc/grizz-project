@@ -1,32 +1,20 @@
 /* src/theme/variables.css */
 
 :root {
+  /* ... (Your existing variables) ... */
+
   /* Set the base font */
   font-family: 'Montserrat', sans-serif;
 
-  /*
-   * Base App Colors
-   */
+  /* Base App Colors */
   --ion-color-primary: #facc15;
-  --ion-color-primary-rgb: 250, 204, 21;
-  --ion-color-primary-contrast: #000000;
-  --ion-color-primary-contrast-rgb: 0, 0, 0;
-  --ion-color-primary-shade: #daac13;
-  --ion-color-primary-tint: #f4c92d;
+  /* ... other colors ... */
 
-  /*
-   * App Theme
-   */
-
-  /* Set the default text color to dark */
+  /* App Theme */
   --ion-text-color: #18181b;
-
-  /* Set the main app background to a light grey */
   --ion-background-color: #f9f9f9;
 
-  /* -- App Styling for GRIZZ Theme -- */
-
-  /* Default Toolbar Styling (for any future solid headers) */
+  /* Default Toolbar Styling */
   ion-toolbar {
     --background: #ffffff;
     --color: #18181b;
@@ -37,3 +25,5 @@
     --background: #f9f9f9;
   }
 }
+
+/* Ensure NO .cart-toast-top-offset styles are present here */

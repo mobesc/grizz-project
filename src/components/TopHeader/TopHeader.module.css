@@ -78,3 +78,23 @@
 .iconButton:hover {
   color: #facc15; /* Amber hover */
 }
+
+/* --- Cart Badge Styling --- */
+.cartButtonContainer {
+  position: relative; /* Needed for absolute positioning of the badge */
+}
+
+.cartBadge {
+  position: absolute;
+  top: 4px; /* Adjust as needed */
+  right: 0px; /* Adjust as needed */
+  font-size: 0.7rem;
+  --padding-start: 5px; /* Ionic badge padding variables */
+  --padding-end: 5px;
+  min-width: 18px; /* Ensure small numbers look okay */
+  height: 18px; /* Ensure small numbers look okay */
+  border-radius: 50%; /* Make it circular */
+  display: flex; /* Center the number */
+  justify-content: center;
+  align-items: center;
+}

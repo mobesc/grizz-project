@@ -5,21 +5,25 @@ import {
   IonApp,
   IonRouterOutlet,
   setupIonicReact,
-  HTMLIonMenuElement // Import the type for our menu element
+  HTMLIonMenuElement
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { useState, useEffect, useRef } from 'react'; // Import useRef
+import { useState, useEffect, useRef } from 'react';
 
 // Import Pages
 import Home from './pages/Home/Home';
 import Beers from './pages/Beers/Beers';
 import About from './pages/About/About';
 import History from './pages/History/History';
+import ProductPage from './pages/ProductPage/ProductPage';
 
 // Import Global UI Components
 import TopHeader from './components/TopHeader/TopHeader';
 import SideMenu from './components/SideMenu/SideMenu';
 import SplashScreen from './components/SplashScreen/SplashScreen';
+
+// Import Cart Provider
+import { CartProvider } from './context/CartContext'; // <-- IMPORT PROVIDER
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,8 +45,6 @@ setupIonicReact();
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-  
-  // This is our direct link to the menu element
   const menuRef = useRef<HTMLIonMenuElement>(null);
 
   useEffect(() => {
@@ -55,47 +57,50 @@ const App: React.FC = () => {
     return <SplashScreen />;
   }
 
-  // This function now DIRECTLY toggles the menu element
   const toggleMenu = () => {
-    menuRef.current?.toggle(); 
+    menuRef.current?.toggle();
   };
 
-  // This function DIRECTLY closes the menu element
   const closeMenu = () => {
     menuRef.current?.close();
   };
 
   return (
     <IonApp>
-      <IonReactRouter>
-        {/* Pass the ref and functions to the components */}
-        <SideMenu 
-          menuRef={menuRef} 
-          onClose={closeMenu} 
-        />
-        <TopHeader 
-          onMenuToggle={toggleMenu} 
-        />
-        
-        <IonRouterOutlet id="main-content">
-          {/* Main Tab Routes */}
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/beers" component={Beers} />
-          <Route exact path="/about" component={About} />
-          
-          {/* Side Menu Routes */}
-          <Route exact path="/history" component={History} />
-          <Route exact path="/login" component={Home} />
-          <Route exact path="/product-info" component={Home} />
-          <Route exact path="/developers" component={Home} />
-          <Route exact path="/contact" component={Home} />
-          <Route exact path="/locations" component={Home} />
-          <Route exact path="/settings" component={Home} />
+      {/* Wrap the router content with CartProvider */}
+      <CartProvider>
+        <IonReactRouter>
+          <SideMenu
+            menuRef={menuRef}
+            onClose={closeMenu}
+          />
+          <TopHeader
+            onMenuToggle={toggleMenu}
+          />
 
-          {/* Default Redirect */}
-          <Redirect exact from="/" to="/home" />
-        </IonRouterOutlet>
-      </IonReactRouter>
+          <IonRouterOutlet id="main-content">
+            {/* Main Tab Routes */}
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/beers" component={Beers} />
+            <Route exact path="/about" component={About} />
+
+            {/* Product Detail Route */}
+            <Route exact path="/beer/:productId" component={ProductPage} />
+
+            {/* Side Menu Routes */}
+            <Route exact path="/history" component={History} />
+            <Route exact path="/login" component={Home} />
+            <Route exact path="/product-info" component={Home} />
+            <Route exact path="/developers" component={Home} />
+            <Route exact path="/contact" component={Home} />
+            <Route exact path="/locations" component={Home} />
+            <Route exact path="/settings" component={Home} />
+
+            {/* Default Redirect */}
+            <Redirect exact from="/" to="/home" />
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </CartProvider> {/* <-- END PROVIDER WRAP */}
     </IonApp>
   );
 };
