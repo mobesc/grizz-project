@@ -2,18 +2,25 @@
 
 import { IonContent, IonPage, useIonRouter } from '@ionic/react';
 import styles from './Home.module.css';
-import Footer from '../../components/Footer/Footer'; // 1. IMPORT THE NEW FOOTER
+import Footer from '../../components/Footer/Footer'; // Ensure Footer is imported
 
-// We can re-use the BeerCard component logic here
-const BeerCard: React.FC<{ name: string; type: string; imageUrl: string; }> = ({ name, type, imageUrl }) => (
-    <div className={styles.productCard}>
-        <img src={imageUrl} alt={name} className={styles.productImage} onError={(e) => { (e.target as HTMLImageElement).src='https://placehold.co/400x400/f4f4f5/facc15?text=GRIZZ'; }}/>
-        <div className={styles.productInfo}>
-            <h3 className={styles.productName}>{name}</h3>
-            <p className={styles.productType}>{type}</p>
-        </div>
-    </div>
-);
+// Re-use the BeerCard component logic here for consistency
+const BeerCard: React.FC<{ name: string; type: string; imageUrl: string; id: string; }> = ({ name, type, imageUrl, id }) => {
+    const router = useIonRouter();
+    const goToProductPage = () => {
+      router.push(`/beer/${id}`); // Navigate using ID
+    };
+
+    return (
+      <div className={styles.productCard} onClick={goToProductPage} style={{cursor: 'pointer'}}>
+          <img src={imageUrl} alt={name} className={styles.productImage} onError={(e) => { (e.target as HTMLImageElement).src='https://placehold.co/400x400/f4f4f5/facc15?text=GRIZZ'; }}/>
+          <div className={styles.productInfo}>
+              <h3 className={styles.productName}>{name}</h3>
+              <p className={styles.productType}>{type}</p>
+          </div>
+      </div>
+    );
+};
 
 const Home: React.FC = () => {
   const router = useIonRouter();
@@ -22,10 +29,11 @@ const Home: React.FC = () => {
     router.push('/beers', 'root', 'replace');
   };
 
+  // Featured beers with updated image paths and IDs
   const featuredBeers = [
-    { name: 'GRIZZLY GOLD', type: 'Golden Ale', imageUrl: '/assets/beer-placeholder-1.png' },
-    { name: 'MIDNIGHT PAWS', type: 'Porter', imageUrl: '/assets/beer-placeholder-2.png' },
-    { name: 'FOREST HAZE', type: 'Hazy IPA', imageUrl: '/assets/beer-placeholder-3.png' },
+    { id: 'grizzly-gold', name: 'GRIZZLY GOLD', type: 'Golden Ale', imageUrl: '/assets/GRIZZLY-GOLD.png' }, // <-- UPDATED PATH
+    { id: 'midnight-paws', name: 'MIDNIGHT PAWS', type: 'Porter', imageUrl: '/assets/MIDNIGHT-PAWS.png' }, // <-- UPDATED PATH
+    { id: 'forest-haze', name: 'FOREST HAZE', type: 'Hazy IPA', imageUrl: '/assets/FOREST-HAZE.png' }, // <-- UPDATED PATH
   ];
 
   return (
@@ -42,7 +50,7 @@ const Home: React.FC = () => {
                 <p className={styles.heroSubtitle}>Welcome to GRIZZ. We brew bold, untamed beer for the wild at heart.</p>
               </div>
             </section>
-            
+
             {/* --- PRODUCT SNEAK PEEK SECTION --- */}
             <section id="sneak-peek" className={styles.sneakPeekSection}>
               <div className={styles.sneakPeekHeader}>
@@ -50,12 +58,13 @@ const Home: React.FC = () => {
                 <button onClick={goToBeerPage} className={styles.seeMoreButton}>See More</button>
               </div>
               <div className={styles.productScroll}>
+                {/* Pass ID to BeerCard */}
                 {featuredBeers.map((beer, index) => (
-                  <BeerCard key={index} {...beer} />
+                  <BeerCard key={index} id={beer.id} {...beer} />
                 ))}
               </div>
             </section>
-            
+
             {/* -- Contact Section -- */}
             <section id="contact" className={styles.section}>
               <div className={`${styles.container} ${styles.textContainer}`}>
@@ -70,10 +79,9 @@ const Home: React.FC = () => {
               </div>
             </section>
           </main>
-          
-          {/* -- 2. REPLACE THE OLD FOOTER WITH THE NEW COMPONENT -- */}
+
           <Footer />
-          
+
         </div>
       </IonContent>
     </IonPage>

@@ -7,14 +7,14 @@ import styles from './ProductPage.module.css';
 import { chevronBackOutline, checkmarkCircle, star, starOutline } from 'ionicons/icons';
 import { useCart } from '../../context/CartContext';
 
-// --- MOCK DATA with original details + ratings ---
+// --- MOCK DATA with updated image paths ---
 const beerDatabase: { [key: string]: any } = {
   'grizzly-gold': {
     id: 'grizzly-gold',
     name: 'GRIZZLY GOLD',
     type: 'Golden Ale',
     description: 'Our main Golden Ale, Grizzly Gold, is both easy to drink and flavorful. We use pale malts for a light body and color, adding Cascade hops for hints of citrus. It has a clean fermentation, highlighting the quality ingredients. Great with lighter foods or by itself after spending time outdoors.',
-    imageUrl: '/assets/beer-placeholder-1.png',
+    imageUrl: '/assets/GRIZZLY-GOLD.png', // <-- UPDATED PATH
     price: 12.99,
     abv: 5.2,
     ibu: 25,
@@ -28,7 +28,7 @@ const beerDatabase: { [key: string]: any } = {
     name: 'MIDNIGHT PAWS',
     type: 'Porter',
     description: 'Try the deep flavors of Midnight Paws Porter. This strong beer uses roasted barley and chocolate malt for notes of coffee, dark chocolate, and a touch of caramel. Balanced hop bitterness leads to a rich, smooth finish.',
-    imageUrl: '/assets/beer-placeholder-2.png',
+    imageUrl: '/assets/MIDNIGHT-PAWS.png', // <-- UPDATED PATH
     price: 14.99,
     abv: 6.0,
     ibu: 35,
@@ -42,7 +42,7 @@ const beerDatabase: { [key: string]: any } = {
     name: 'FOREST HAZE',
     type: 'Hazy IPA',
     description: 'Enjoy our Forest Haze IPA, heavily hopped with Citra and Mosaic for strong tropical fruit smells like mango and citrus. Oats and wheat give it a full, soft texture and its hazy look. Low bitterness makes it extra juicy and smooth.',
-    imageUrl: '/assets/beer-placeholder-3.png',
+    imageUrl: '/assets/FOREST-HAZE.png', // <-- UPDATED PATH
     price: 15.99,
     abv: 6.5,
     ibu: 40,
@@ -54,7 +54,7 @@ const beerDatabase: { [key: string]: any } = {
 };
 // --- END MOCK DATA ---
 
-// Helper function to render stars
+// Helper function to render stars (remains the same)
 const renderStars = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -111,8 +111,8 @@ const ProductPage: React.FC = () => {
     presentToast({
       message: `${item.name} added to cart!`,
       duration: 2000,
-      position: 'bottom', // Correct position
-      color: 'success', // Correct color
+      position: 'bottom',
+      color: 'success',
       icon: checkmarkCircle,
     });
   };
@@ -138,7 +138,6 @@ const ProductPage: React.FC = () => {
     );
   }
 
-  // --- Render Product Details (with ratings) ---
   return (
     <IonPage>
       <IonContent fullscreen={true}>

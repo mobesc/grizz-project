@@ -1,23 +1,18 @@
 // src/pages/Beers/Beers.tsx
 
-import { IonContent, IonPage, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle } from '@ionic/react'; // Added IonCard components
-// Removed useIonRouter as routerLink handles navigation now
+import { IonContent, IonPage, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle } from '@ionic/react';
 import styles from './Beers.module.css';
 
 // Updated BeerCard to use IonCard and routerLink
 const BeerCard: React.FC<{ id: string; name: string; type: string; description: string; imageUrl: string; }> = ({ id, name, type, description, imageUrl }) => {
     return (
-        // Use IonCard for better structure and built-in routing
-        <IonCard button={true} routerLink={`/beer/${id}`} className={styles.beerCard} > {/* Add routerLink here */}
+        <IonCard button={true} routerLink={`/beer/${id}`} className={styles.beerCard} >
             <img src={imageUrl} alt={name} className={styles.beerImage} onError={(e) => { (e.target as HTMLImageElement).src='https://placehold.co/400x400/18181b/facc15?text=GRIZZ'; }}/>
-            {/* Use IonCardContent for padding */}
             <IonCardContent className={styles.beerCardContent}>
-                 {/* Optional: Use IonCardHeader/Title/Subtitle for semantic structure if preferred */}
-                 {/* <IonCardHeader> */}
-                    <IonCardTitle className={styles.beerName}>{name}</IonCardTitle>
-                    <IonCardSubtitle className={styles.beerType}>{type}</IonCardSubtitle>
-                 {/* </IonCardHeader> */}
-                <p className={styles.beerDescription}>{description}</p>
+                <IonCardTitle className={styles.beerName}>{name}</IonCardTitle>
+                <IonCardSubtitle className={styles.beerType}>{type}</IonCardSubtitle>
+                {/* Use the SHORTER description from the list for the card */}
+                <p className={styles.beerDescription}>{description.split('.')[0] + '.'}</p>
             </IonCardContent>
         </IonCard>
     );
@@ -25,11 +20,11 @@ const BeerCard: React.FC<{ id: string; name: string; type: string; description: 
 
 
 const Beers: React.FC = () => {
-    // Added 'id' field for routing (use URL-friendly slugs)
+    // List with updated image paths and shorter descriptions for display here
     const beerList = [
-        { id: 'grizzly-gold', name: 'GRIZZLY GOLD', type: 'Golden Ale', description: 'A light, crisp golden ale with a hint of citrus.', imageUrl: '/assets/beer-placeholder-1.png' },
-        { id: 'midnight-paws', name: 'MIDNIGHT PAWS', type: 'Porter', description: 'Dark, rich, and roasty with notes of chocolate and coffee.', imageUrl: '/assets/beer-placeholder-2.png' },
-        { id: 'forest-haze', name: 'FOREST HAZE', type: 'Hazy IPA', description: 'A juicy, tropical IPA with low bitterness and a smooth finish.', imageUrl: '/assets/beer-placeholder-3.png' },
+        { id: 'grizzly-gold', name: 'GRIZZLY GOLD', type: 'Golden Ale', description: 'A light, crisp golden ale with a hint of citrus.', imageUrl: '/assets/GRIZZLY-GOLD.png' }, // <-- UPDATED PATH
+        { id: 'midnight-paws', name: 'MIDNIGHT PAWS', type: 'Porter', description: 'Dark, rich, and roasty with notes of chocolate and coffee.', imageUrl: '/assets/MIDNIGHT-PAWS.png' }, // <-- UPDATED PATH
+        { id: 'forest-haze', name: 'FOREST HAZE', type: 'Hazy IPA', description: 'A juicy, tropical IPA with low bitterness and a smooth finish.', imageUrl: '/assets/FOREST-HAZE.png' }, // <-- UPDATED PATH
     ];
 
     return (
@@ -43,9 +38,9 @@ const Beers: React.FC = () => {
                                 <div className={styles.sectionUnderline}></div>
                             </div>
                             <div className={styles.beerGrid}>
-                                {/* Pass the 'id' prop to BeerCard */}
                                 {beerList.map((beer, index) => (
-                                    <BeerCard key={index} id={beer.id} {...beer} />
+                                    // Pass the shorter description to the card
+                                    <BeerCard key={index} id={beer.id} name={beer.name} type={beer.type} description={beer.description} imageUrl={beer.imageUrl} />
                                 ))}
                             </div>
                         </div>
