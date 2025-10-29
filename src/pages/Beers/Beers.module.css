@@ -4,7 +4,7 @@
   color: #18181b;
   font-family: 'Montserrat', sans-serif;
   min-height: 100%;
-  padding-top: 70px; /* <-- ADJUSTED PADDING */
+  padding-top: 70px;
 }
 
 .section {
@@ -39,11 +39,13 @@
 }
 
 .beerCard {
-  background-color: #ffffff;
+  --background: #ffffff;
   border-radius: 0.5rem;
-  overflow: hidden;
+  overflow: hidden; /* Important for object-fit: cover */
   border: 1px solid rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  margin: 0;
+  box-shadow: none;
 }
 
 .beerCard:hover {
@@ -54,9 +56,9 @@
 .beerImage {
   width: 100%;
   height: 12rem;
-  object-fit: contain;
-  background-color: #f4f4f5;
-  padding: 1rem;
+  object-fit: cover; /* <-- CHANGE BACK to cover */
+  background-color: #f4f4f5; /* Background for loading/errors */
+  /* padding: 1rem; <-- REMOVED padding */
 }
 
 .beerCardContent {

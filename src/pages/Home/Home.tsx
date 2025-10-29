@@ -2,13 +2,12 @@
 
 import { IonContent, IonPage, useIonRouter } from '@ionic/react';
 import styles from './Home.module.css';
-import Footer from '../../components/Footer/Footer'; // Ensure Footer is imported
+import Footer from '../../components/Footer/Footer';
 
-// Re-use the BeerCard component logic here for consistency
 const BeerCard: React.FC<{ name: string; type: string; imageUrl: string; id: string; }> = ({ name, type, imageUrl, id }) => {
     const router = useIonRouter();
     const goToProductPage = () => {
-      router.push(`/beer/${id}`); // Navigate using ID
+      router.push(`/beer/${id}`);
     };
 
     return (
@@ -29,11 +28,11 @@ const Home: React.FC = () => {
     router.push('/beers', 'root', 'replace');
   };
 
-  // Featured beers with updated image paths and IDs
+  // Featured beers with NEW image paths
   const featuredBeers = [
-    { id: 'grizzly-gold', name: 'GRIZZLY GOLD', type: 'Golden Ale', imageUrl: '/assets/GRIZZLY-GOLD.png' }, // <-- UPDATED PATH
-    { id: 'midnight-paws', name: 'MIDNIGHT PAWS', type: 'Porter', imageUrl: '/assets/MIDNIGHT-PAWS.png' }, // <-- UPDATED PATH
-    { id: 'forest-haze', name: 'FOREST HAZE', type: 'Hazy IPA', imageUrl: '/assets/FOREST-HAZE.png' }, // <-- UPDATED PATH
+    { id: 'grizzly-gold', name: 'GRIZZLY GOLD', type: 'Golden Ale', imageUrl: '/assets/product1.png' }, // <-- NEW IMAGE
+    { id: 'midnight-paws', name: 'MIDNIGHT PAWS', type: 'Porter', imageUrl: '/assets/product2.png' }, // <-- NEW IMAGE
+    { id: 'forest-haze', name: 'FOREST HAZE', type: 'Hazy IPA', imageUrl: '/assets/product3.png' }, // <-- NEW IMAGE
   ];
 
   return (
@@ -41,7 +40,7 @@ const Home: React.FC = () => {
       <IonContent fullscreen={true}>
         <div className={styles.mainContainer}>
           <main>
-            {/* -- Hero Section -- */}
+            {/* --- Original Hero Section --- */}
             <section id="hero" className={styles.heroSection}>
               <div className={styles.heroOverlay}></div>
               <div className={styles.heroContent}>
@@ -50,22 +49,20 @@ const Home: React.FC = () => {
                 <p className={styles.heroSubtitle}>Welcome to GRIZZ. We brew bold, untamed beer for the wild at heart.</p>
               </div>
             </section>
+            {/* --- End Original Hero Section --- */}
 
-            {/* --- PRODUCT SNEAK PEEK SECTION --- */}
             <section id="sneak-peek" className={styles.sneakPeekSection}>
               <div className={styles.sneakPeekHeader}>
                 <h2 className={styles.sectionHeader}>OUR BEERS</h2>
                 <button onClick={goToBeerPage} className={styles.seeMoreButton}>See More</button>
               </div>
               <div className={styles.productScroll}>
-                {/* Pass ID to BeerCard */}
                 {featuredBeers.map((beer, index) => (
                   <BeerCard key={index} id={beer.id} {...beer} />
                 ))}
               </div>
             </section>
 
-            {/* -- Contact Section -- */}
             <section id="contact" className={styles.section}>
               <div className={`${styles.container} ${styles.textContainer}`}>
                   <h2 className={styles.sectionHeader}>GET IN TOUCH</h2>

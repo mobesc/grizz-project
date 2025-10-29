@@ -14,13 +14,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  
   /* --- DARK "GLASS" EFFECT --- */
   background-color: rgba(24, 24, 27, 0.7); /* zinc-900 with transparency */
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(82, 82, 91, 0.8); /* zinc-700 border */
-  /* --- End Glass Effect --- */
-
+  
   padding: 0.5rem 1rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
@@ -50,12 +49,18 @@
   gap: 0.5rem;
 }
 
-/* --- ADDED .logoImage style --- */
-.logoImage {
-  height: 45px; /* Adjust height as needed */
-  width: auto;
-  object-fit: contain;
+/* --- ADDED .logo text style --- */
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: #facc15; /* Amber color */
+  letter-spacing: 0.1em;
+  margin: 0;
+  font-weight: bold;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 }
+
+/* --- REMOVED .logoImage style --- */
 
 
 .iconButton {
@@ -68,9 +73,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
+  
   color: #a1a1aa; /* Light icons (zinc-400) */
-
+  
   font-size: 1.7rem;
   transition: all 0.3s ease;
   --ion-icon-stroke-width: 40px;

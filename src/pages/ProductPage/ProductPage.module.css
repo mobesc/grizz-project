@@ -1,24 +1,25 @@
 /* src/pages/ProductPage/ProductPage.module.css */
 
+/* --- Base & Container (Keep previous) --- */
 .mainContainer {
   background-color: #f9f9f9;
   color: #18181b;
   font-family: 'Montserrat', sans-serif;
   min-height: 100%;
   padding-top: 80px; /* Space for header */
-  padding-bottom: 4rem; /* Restore original padding */
+  padding-bottom: 4rem;
 }
 
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1rem 1.5rem; /* Restore original padding */
+  padding: 1rem 1.5rem;
 }
 
 .backButton {
   --color: #71717a;
   font-weight: 600;
-  margin-bottom: 1.5rem; /* Restore original margin */
+  margin-bottom: 1.5rem;
   padding-left: 0;
 }
 .backButton:hover {
@@ -28,114 +29,116 @@
 .productLayout {
   display: grid;
   grid-template-columns: 1fr; /* Default single column */
-  gap: 2rem; /* Restore original gap */
+  gap: 2rem;
 }
 
 .imageColumn {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align image to top */
-  background-color: #ffffff;
+  align-items: center; /* Center image within the container */
+  background-color: #ffffff; /* Background if image loading is slow */
   border-radius: 8px;
-  padding: 2rem; /* Restore original padding */
+  padding: 0; /* <-- REMOVED Padding */
   border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Important for object-fit: cover */
+  /* Keep a reasonable max height or aspect ratio */
+  max-height: 400px;
+  /* aspect-ratio: 1 / 1; /* Optionally enforce a square aspect ratio */
 }
 
 .productImage {
-  max-width: 100%;
-  max-height: 400px; /* Restore original max-height */
-  object-fit: contain;
+  width: 100%;  /* Take full width of container */
+  height: 100%; /* Take full height of container */
+  /* max-height needed if container height isn't fixed */
+  max-height: 400px;
+  object-fit: cover; /* <-- CHANGE BACK to cover */
 }
 
 .detailsColumn {
   padding-top: 1rem; /* Space on mobile */
 }
 
+/* ... (rest of the styles remain the same) ... */
+
 .productName {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 3rem; /* Restore original font size */
+  font-size: 3rem;
   letter-spacing: 0.05em;
   color: #18181b;
-  margin-bottom: 0.25rem; /* Restore original margin */
+  margin-bottom: 0.25rem;
 }
 
 .productType {
-  font-size: 1rem; /* Restore original font size */
+  font-size: 1rem;
   color: #71717a;
   text-transform: uppercase;
-  margin-bottom: 0.5rem; /* Reduced margin before rating */
+  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
-/* --- Added Rating Styles --- */
 .ratingContainer {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem; /* Space below ratings */
-    gap: 0.2rem; /* Small gap between stars */
+    margin-bottom: 1rem;
+    gap: 0.2rem;
 }
 
 .starIcon {
-    color: #facc15; /* Amber color for stars */
-    font-size: 1.1rem; /* Adjust size as needed */
+    color: #facc15;
+    font-size: 1.1rem;
 }
 
 .reviewCount {
-    margin-left: 0.5rem; /* Space between stars and count */
+    margin-left: 0.5rem;
     font-size: 0.85rem;
     color: #71717a;
 }
-/* --- End Rating Styles --- */
 
 .productPrice {
-  font-size: 1.75rem; /* Restore original font size */
+  font-size: 1.75rem;
   font-weight: bold;
   color: #18181b;
-  margin-bottom: 1rem; /* Restore original margin */
+  margin-bottom: 1rem;
 }
 
-/* --- Re-enabled Specs --- */
 .specs {
-  display: flex; /* Make visible again */
-  gap: 1.5rem; /* Restore original gap */
-  margin-bottom: 0.5rem; /* Restore original margin */
-  font-size: 0.9rem; /* Restore original font size */
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
   color: #52525b;
 }
 
 .specs span {
   font-weight: 600;
 }
-/* --- End Specs --- */
 
 .productVolume,
 .productAvailability {
-  font-size: 0.9rem; /* Restore original font size */
+  font-size: 0.9rem;
   color: #52525b;
-  margin-bottom: 0.5rem; /* Restore original margin */
+  margin-bottom: 0.5rem;
 }
-/* Re-enable Availability */
 .productAvailability {
     display: block;
 }
 
 .descriptionHeader {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem; /* Restore original font size */
+  font-size: 1.5rem;
   letter-spacing: 0.05em;
-  margin-top: 2rem; /* Restore original margin */
-  margin-bottom: 0.75rem; /* Restore original margin */
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
   border-bottom: 2px solid #facc15;
-  padding-bottom: 0.25rem; /* Restore original padding */
+  padding-bottom: 0.25rem;
   display: inline-block;
 }
 
 .productDescription {
   color: #3f3f46;
-  font-size: 1rem; /* Restore original font size */
-  line-height: 1.6; /* Restore original line height */
-  margin-bottom: 2rem; /* Restore original margin */
-  /* Remove line clamping */
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
   overflow: visible;
   display: block;
   -webkit-line-clamp: unset;
@@ -148,21 +151,23 @@
   --color: #000;
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 1.5rem; /* Restore original margin */
-  margin-bottom: 0; /* Remove specific mobile margin */
+  margin-top: 1.5rem;
+  margin-bottom: 0;
   --border-radius: 4px;
-  font-size: 1rem; /* Restore original font size */
-  --padding-top: 0.75rem; /* Restore original padding */
-  --padding-bottom: 0.75rem; /* Restore original padding */
+  font-size: 1rem;
+  --padding-top: 0.75rem;
+  --padding-bottom: 0.75rem;
 }
 
-/* Responsive layout for medium screens and up */
 @media (min-width: 768px) {
   .productLayout {
-    grid-template-columns: 1fr 1.5fr; /* 2 columns */
+    grid-template-columns: 1fr 1.5fr;
     gap: 3rem;
   }
   .detailsColumn {
     padding-top: 0;
+  }
+   .imageColumn {
+     align-items: center; /* Center covered image */
   }
 }
