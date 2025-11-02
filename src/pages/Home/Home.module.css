@@ -1,7 +1,5 @@
 /* src/pages/Home/Home.module.css */
 
-/* ... (Keep other styles like .mainContainer, hero sections, etc.) ... */
-
 /* --- SNEAK PEEK STYLES --- */
 .sneakPeekSection {
   padding: 3rem 0;
@@ -60,9 +58,8 @@
 .productImage {
   width: 100%;
   height: 200px;
-  object-fit: cover; /* <-- CHANGE BACK to cover */
+  object-fit: cover;
   background-color: #f4f4f5; /* Background for loading/errors */
-  /* padding: 1rem; <-- REMOVED padding */
 }
 
 .productInfo {
@@ -84,7 +81,6 @@
   margin: 0;
 }
 
-/* ... (Keep other styles like CTA, Footer, Responsive) ... */
 /* --- FONT & GLOBAL STYLES --- */
 .mainContainer {
   background-color: #f9f9f9;
@@ -130,30 +126,28 @@
 }
 
 
-/* -- HERO SECTION -- */
+/* -- HERO SECTION (MODIFIED) -- */
 .heroSection {
-  min-height: 70vh;
-  padding-top: 70px; /* Space for the floating TopHeader */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url('/assets/hero-background.jpg'); /* Use local asset */
-  background-size: cover;
-  background-position: center;
+  min-height: 75vh;
   position: relative;
   text-align: center;
+  background-color: #18181b; /* Background for slide transitions */
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2; /* Ensure overlay is above image but below content */
 }
 
 .heroContent {
   position: relative;
   z-index: 10;
-  margin-top: -10vh; /* Lifts the text up slightly */
+  padding-top: 25vh; /* <-- CHANGED: Increased padding */
+  padding-bottom: 2rem; 
+  padding-left: 1rem;   
+  padding-right: 1rem;  
 }
 
 .heroTitle {
@@ -166,7 +160,7 @@
 }
 
 .heroSubtitle {
-  font-size: 1.125rem;
+  font-size: 0.90rem; /* Your tweaked size */
   color: #facc15;
   margin-top: 1rem;
   max-width: 42rem;
@@ -199,4 +193,82 @@
   .heroSubtitle {
     font-size: 1.25rem;
   }
+  .heroContent {
+    padding-top: 20vh; /* <-- CHANGED: Increased padding */
+  }
+}
+
+/* --- HERO BUTTONS --- */
+.heroButtonContainer {
+  margin-top: 2rem; /* Adds space above the buttons */
+  display: flex;
+  gap: 1rem; /* Adds space between the buttons */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allows buttons to stack on small screens */
+}
+
+/* This overrides the margin on the main ctaButton ONLY when it's in the hero */
+.heroButtonContainer .ctaButton {
+  margin-top: 0;
+}
+
+/* This is the new "Learn More" button style */
+.secondaryButton {
+  display: inline-block;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 0.125rem;
+  font-size: 1.125rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* --- SWIPER STYLES (MODIFIED) --- */
+.heroSwiper {
+  width: 100%;
+  height: 75vh; 
+}
+
+.heroSlide {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  display: flex;
+  align-items: flex-start; /* <-- Aligns content block to the top */
+  justify-content: center;
+}
+
+/* Individual slide background images */
+.slide1 {
+  background-image: url('/assets/hero-background.jpg');
+  background-size: cover;
+}
+.slide2 {
+  background-image: url('/assets/product1.png');
+  background-size: cover; 
+}
+.slide3 {
+  background-image: url('/assets/product2.png');
+  background-size: cover; 
+}
+
+/* Pagination Dot Styles */
+:global(.swiper-pagination-bullet) {
+  background-color: #ffffff;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background-color: #facc15; /* Your primary yellow */
+  opacity: 1;
 }

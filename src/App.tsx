@@ -21,6 +21,7 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import TopHeader from './components/TopHeader/TopHeader';
 import SideMenu from './components/SideMenu/SideMenu';
 import SplashScreen from './components/SplashScreen/SplashScreen';
+import CartModal from './components/CartModal/CartModal'; // <-- IMPORT NEW MODAL
 
 // Import Cart Provider
 import { CartProvider } from './context/CartContext'; // <-- IMPORT PROVIDER
@@ -46,6 +47,9 @@ setupIonicReact();
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const menuRef = useRef<HTMLIonMenuElement>(null);
+
+  // --- NEW: State for Cart Modal ---
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -76,6 +80,13 @@ const App: React.FC = () => {
           />
           <TopHeader
             onMenuToggle={toggleMenu}
+            onCartClick={() => setIsCartOpen(true)} // <-- NEW: Pass function to open modal
+          />
+          
+          {/* --- NEW: Add the Cart Modal here --- */}
+          <CartModal 
+            isOpen={isCartOpen}
+            onClose={() => setIsCartOpen(false)}
           />
 
           <IonRouterOutlet id="main-content">

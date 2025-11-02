@@ -7,15 +7,15 @@ import styles from './ProductPage.module.css';
 import { chevronBackOutline, checkmarkCircle, star, starOutline } from 'ionicons/icons';
 import { useCart } from '../../context/CartContext';
 
-// --- MOCK DATA with NEW image paths ---
+// --- MOCK DATA with NEW PHP prices ---
 const beerDatabase: { [key: string]: any } = {
   'grizzly-gold': {
     id: 'grizzly-gold',
     name: 'GRIZZLY GOLD',
     type: 'Golden Ale',
     description: 'Our main Golden Ale, Grizzly Gold, is both easy to drink and flavorful. We use pale malts for a light body and color, adding Cascade hops for hints of citrus. It has a clean fermentation, highlighting the quality ingredients. Great with lighter foods or by itself after spending time outdoors.',
-    imageUrl: '/assets/product1.png', // <-- NEW IMAGE
-    price: 12.99, // Assuming $ price
+    imageUrl: '/assets/product1.png',
+    price: 719.00, // <-- CHANGED
     abv: 5.2,
     ibu: 25,
     volume: '6-Pack (12oz Cans)',
@@ -28,8 +28,8 @@ const beerDatabase: { [key: string]: any } = {
     name: 'MIDNIGHT PAWS',
     type: 'Porter',
     description: 'Try the deep flavors of Midnight Paws Porter. This strong beer uses roasted barley and chocolate malt for notes of coffee, dark chocolate, and a touch of caramel. Balanced hop bitterness leads to a rich, smooth finish.',
-    imageUrl: '/assets/product2.png', // <-- NEW IMAGE
-    price: 14.99, // Assuming $ price
+    imageUrl: '/assets/product2.png',
+    price: 799.00, // <-- CHANGED
     abv: 6.0,
     ibu: 35,
     volume: '6-Pack (12oz Cans)',
@@ -42,8 +42,8 @@ const beerDatabase: { [key: string]: any } = {
     name: 'FOREST HAZE',
     type: 'Hazy IPA',
     description: 'Enjoy our Forest Haze IPA, heavily hopped with Citra and Mosaic for strong tropical fruit smells like mango and citrus. Oats and wheat give it a full, soft texture and its hazy look. Low bitterness makes it extra juicy and smooth.',
-    imageUrl: '/assets/product3.png', // <-- NEW IMAGE
-    price: 15.99, // Assuming $ price
+    imageUrl: '/assets/product3.png',
+    price: 919.00, // <-- CHANGED
     abv: 6.5,
     ibu: 40,
     volume: '4-Pack (16oz Cans)',
@@ -166,7 +166,8 @@ const ProductPage: React.FC = () => {
                     <span className={styles.reviewCount}>({product.reviewCount} Reviews)</span>
                 </div>
 
-                <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
+                {/* --- CURRENCY CHANGE --- */}
+                <p className={styles.productPrice}>₱{product.price.toFixed(2)}</p>
 
                 <div className={styles.specs}>
                   <span>ABV: {product.abv}%</span>

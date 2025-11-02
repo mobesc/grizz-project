@@ -1,15 +1,16 @@
 // src/components/TopHeader/TopHeader.tsx
 
 import { IonIcon, useIonRouter, IonBadge } from '@ionic/react';
-import { cartOutline, menuOutline, searchOutline, personOutline } from 'ionicons/icons';
+import { cartOutline, menuOutline, searchOutline, personOutline }from 'ionicons/icons';
 import styles from './TopHeader.module.css';
 import { useCart } from '../../context/CartContext';
 
 interface TopHeaderProps {
   onMenuToggle: () => void;
+  onCartClick: () => void; // <-- Prop to open the modal
 }
 
-const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle }) => {
+const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle, onCartClick }) => { // <-- Get prop
   const router = useIonRouter();
   const { getCartItemCount } = useCart();
   const cartItemCount = getCartItemCount();
@@ -22,8 +23,9 @@ const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle }) => {
     router.push('/home', 'root', 'replace');
   }
 
+  // --- MODIFIED: This function now calls the prop from App.tsx ---
   const handleCartClick = () => {
-    console.log("Cart icon clicked...");
+    onCartClick(); // <-- It should ONLY have this line
   };
 
   return (

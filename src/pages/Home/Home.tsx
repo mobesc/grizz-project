@@ -4,6 +4,14 @@ import { IonContent, IonPage, useIonRouter } from '@ionic/react';
 import styles from './Home.module.css';
 import Footer from '../../components/Footer/Footer';
 
+// --- NEW SWIPER IMPORTS ---
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+// --- END SWIPER IMPORTS ---
+
 const BeerCard: React.FC<{ name: string; type: string; imageUrl: string; id: string; }> = ({ name, type, imageUrl, id }) => {
     const router = useIonRouter();
     const goToProductPage = () => {
@@ -40,16 +48,67 @@ const Home: React.FC = () => {
       <IonContent fullscreen={true}>
         <div className={styles.mainContainer}>
           <main>
-            {/* --- Original Hero Section --- */}
+            {/* --- REPLACED HERO SECTION WITH SWIPER --- */}
             <section id="hero" className={styles.heroSection}>
-              <div className={styles.heroOverlay}></div>
-              <div className={styles.heroContent}>
-                <h2 className={styles.heroTitle}>CRAFTED.</h2>
-                <h2 className={styles.heroTitle}>FEARLESS.</h2>
-                <p className={styles.heroSubtitle}>Welcome to GRIZZ. We brew bold, untamed beer for the wild at heart.</p>
-              </div>
+              <Swiper
+                className={styles.heroSwiper}
+                modules={[Autoplay, Pagination, EffectFade]}
+                effect="fade"
+                fadeEffect={{ crossFade: true }}
+                pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                }}
+                loop={true}
+                spaceBetween={0}
+                slidesPerView={1}
+              >
+                {/* --- SLIDE 1 --- */}
+                <SwiperSlide className={`${styles.heroSlide} ${styles.slide1}`}>
+                  <div className={styles.heroOverlay}></div>
+                  <div className={styles.heroContent}>
+                    <h2 className={styles.heroTitle}>CRAFTED.</h2>
+                    <h2 className={styles.heroTitle}>FEARLESS.</h2>
+                    <p className={styles.heroSubtitle}>We brew bold, untamed beer for the wild at heart.</p>
+                    <div className={styles.heroButtonContainer}>
+                      <a href="/beers" className={styles.ctaButton}>Order Now</a>
+                      <a href="/about" className={styles.secondaryButton}>Learn More</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* --- SLIDE 2 --- */}
+                <SwiperSlide className={`${styles.heroSlide} ${styles.slide2}`}>
+                  <div className={styles.heroOverlay}></div>
+                  <div className={styles.heroContent}>
+                    <h2 className={styles.heroTitle}>CRAFTED.</h2>
+                    <h2 className={styles.heroTitle}>FEARLESS.</h2>
+                    <p className={styles.heroSubtitle}>We brew bold, untamed beer for the wild at heart.</p>
+                    <div className={styles.heroButtonContainer}>
+                      <a href="/beers" className={styles.ctaButton}>Order Now</a>
+                      <a href="/about" className={styles.secondaryButton}>Learn More</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* --- SLIDE 3 --- */}
+                <SwiperSlide className={`${styles.heroSlide} ${styles.slide3}`}>
+                  <div className={styles.heroOverlay}></div>
+                  <div className={styles.heroContent}>
+                    <h2 className={styles.heroTitle}>CRAFTED.</h2>
+                    <h2 className={styles.heroTitle}>FEARLESS.</h2>
+                    <p className={styles.heroSubtitle}>We brew bold, untamed beer for the wild at heart.</p>
+                    <div className={styles.heroButtonContainer}>
+                      <a href="/beers" className={styles.ctaButton}>Order Now</a>
+                      <a href="/about" className={styles.secondaryButton}>Learn More</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+              </Swiper>
             </section>
-            {/* --- End Original Hero Section --- */}
+            {/* --- End Hero Section --- */}
 
             <section id="sneak-peek" className={styles.sneakPeekSection}>
               <div className={styles.sneakPeekHeader}>

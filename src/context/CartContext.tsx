@@ -9,13 +9,16 @@ interface CartItem {
   imageUrl?: string; // Optional image
   quantity: number;
   selectedPackage?: string; // Keep track of the selected package if applicable
+  type?: string; // For "Golden Ale", etc.
 }
 
-// Define the shape of the context state
+// --- REMOVED clearCart from the interface ---
 interface CartContextState {
   cartItems: CartItem[];
   addToCart: (item: any) => void; // Function to add items
   getCartItemCount: () => number; // Function to get total item count
+  removeFromCart: (itemId: string) => void; 
+  updateItemQuantity: (itemId: string, newQuantity: number) => void; 
 }
 
 // Create the context
@@ -70,6 +73,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
             price: itemToAdd.price,
             imageUrl: itemToAdd.imageUrl,
             selectedPackage: itemToAdd.selectedPackage, // Will be undefined if not provided
+            type: itemToAdd.type, // Add the type
             quantity: 1
         };
         // Filter out any potential extra properties from itemToAdd before adding
@@ -79,13 +83,46 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     });
   };
 
+  const removeFromCart = (itemId: string) => {
+    setCartItems(prevItems => {
+      return prevItems.filter(item => item.id !== itemId);
+    });
+  };
+
+  const updateItemQuantity = (itemId: string, newQuantity: number) => {
+    if (newQuantity <= 0) {
+      // If quantity is 0 or less, remove the item
+      removeFromCart(itemId);
+    } else {
+      // Otherwise, update the quantity
+      setCartItems(prevItems => {
+        return prevItems.map(item =>
+          item.id === itemId
+            ? { ...item, quantity: newQuantity }
+            : item
+        );
+      });
+    }
+  };
+
+  // --- REMOVED clearCart function ---
+
   const getCartItemCount = () => {
      // Sum up quantities of all items
      return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, getCartItemCount }}>
+    <CartContext.Provider 
+      value={{ 
+        cartItems, 
+        addToCart, 
+        getCartItemCount, 
+        removeFromCart,
+        updateItemQuantity
+        // --- REMOVED clearCart from value ---
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

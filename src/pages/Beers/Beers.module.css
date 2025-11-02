@@ -32,64 +32,86 @@
   margin: 0 auto 2rem auto;
 }
 
-.beerGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+/* --- NEW STYLES FOR BUTTONS --- */
+.controlsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
+.controlButton {
+  --color: #18181b;
+  --border-color: #e0e0e0;
+  --border-radius: 4px;
+  --padding-start: 2rem;
+  --padding-end: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  --background-hover: #f9f9f9;
+}
+
+/* --- UPDATED GRID STYLES --- */
+.beerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2-column grid */
+  gap: 1rem; /* Spacing between cards */
+}
+
+/* --- UPDATED CARD STYLES --- */
 .beerCard {
-  --background: #ffffff;
-  border-radius: 0.5rem;
-  overflow: hidden; /* Important for object-fit: cover */
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
   transition: all 0.3s ease;
-  margin: 0;
-  box-shadow: none;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .beerCard:hover {
-  transform: scale(1.05);
-  border-color: #facc15;
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Makes the image container square */
+  overflow: hidden;
+  background-color: #f4f4f5;
 }
 
 .beerImage {
   width: 100%;
-  height: 12rem;
-  object-fit: cover; /* <-- CHANGE BACK to cover */
-  background-color: #f4f4f5; /* Background for loading/errors */
-  /* padding: 1rem; <-- REMOVED padding */
+  height: 100%;
+  object-fit: cover;
 }
 
-.beerCardContent {
-  padding: 1.5rem;
+.cardContent {
+  padding: 1rem;
 }
 
 .beerName {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.875rem;
+  font-size: 1.25rem;
   color: #18181b;
   letter-spacing: 0.05em;
-}
-
-.beerType {
-  font-size: 0.875rem;
-  color: #71717a;
+  margin: 0 0 0.25rem 0;
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
 }
 
-.beerDescription {
-  color: #3f3f46;
+.beerPrice {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
+  color: #18181b;
+  font-weight: 600;
+  margin: 0;
 }
 
-@media (min-width: 768px) {
-  .beerGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
+/* --- RESPONSIVE: Go to 3 columns on larger screens --- */
 @media (min-width: 1024px) {
   .beerGrid {
     grid-template-columns: repeat(3, 1fr);

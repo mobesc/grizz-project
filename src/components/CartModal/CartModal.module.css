@@ -1,0 +1,248 @@
+/* src/components/CartModal/CartModal.module.css */
+
+.cartModal {
+  --background: #ffffff; /* White background */
+}
+
+.modalHeader ion-toolbar {
+  --background: #ffffff;
+  --border-width: 0 0 1px 0;
+  --border-color: #f0f0f0; /* Lighter border */
+}
+
+.modalHeader ion-title {
+  font-family: 'Bebas Neue', sans-serif; /* <-- FONT FIX */
+  font-weight: 600;
+  font-size: 1.5rem; /* <-- FONT FIX */
+  letter-spacing: 0.05em;
+  color: #18181b;
+  padding-left: 1.5rem; /* <-- SPACING FIX */
+}
+
+.closeButton {
+  --color: #18181b;
+  --color-hover: #71717a;
+  font-size: 1.6rem;
+}
+
+.modalContent {
+  --background: #ffffff;
+  --padding: 1.5rem; /* <-- SPACING FIX: Added more padding */
+}
+
+/* --- Empty Cart Styles --- */
+.emptyCart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #71717a;
+}
+.emptyCart h3 {
+  font-family: 'Montserrat', sans-serif; /* <-- FONT FIX */
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.shopButton {
+  --color: #facc15;
+  --color-hover: #eab308;
+  font-family: 'Montserrat', sans-serif; /* <-- FONT FIX */
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  --border-radius: 4px;
+  border: 2px solid #facc15;
+}
+.shopButton:hover {
+  --background: #facc15;
+  --color: #000;
+}
+
+
+/* --- Item List Styles --- */
+.itemList {
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 1.5rem; /* <-- SPACING FIX: Space below item list */
+  margin: 1.5rem;
+}
+
+.cartItem {
+  --background: #ffffff;
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.cartItem:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+.itemDetails {
+  flex: 1; /* Takes up available space */
+}
+
+.itemName {
+  font-family: 'Bebas Neue', sans-serif; /* <-- FONT FIX */
+  font-weight: 600;
+  font-size: 1.2rem; /* <-- FONT FIX */
+  color: #18181b;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.itemPackage {
+  font-size: 0.9rem;
+  color: #71717a;
+  margin-top: 4px;
+}
+
+.itemControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.quantitySelector {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  align-items: center;
+}
+
+.quantityButton {
+  padding: 0.25rem 0.75rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #71717a;
+}
+.quantityButton:hover {
+  color: #18181b;
+}
+
+.quantityDisplay {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: #71717a;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif; /* <-- FONT FIX */
+}
+.removeButton:hover {
+  color: #ef4444;
+}
+
+.itemPrice {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: auto; /* Pushes to the far right */
+}
+
+/* --- Note Section --- */
+.noteSection {
+  margin: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f0f0f0;
+  margin-bottom: 1.5rem; /* <-- SPACING FIX: Space below note section */
+}
+
+.noteSection label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #18181b;
+  font-family: 'Montserrat', sans-serif; /* <-- FONT FIX */
+}
+
+.noteTextarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  min-height: 80px;
+  font-family: 'Montserrat', sans-serif;
+  resize: vertical;
+  background-color: #ffffff; /* <-- TEXTAREA BUG FIX */
+  color: #18181b; /* <-- TEXTAREA BUG FIX */
+}
+.noteTextarea:focus {
+  border-color: #facc15;
+  outline: none;
+}
+
+
+/* --- Footer --- */
+.modalFooter {
+  background: #ffffff;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+  padding: 1.5rem; /* <-- SPACING FIX: Added more padding */
+}
+.modalFooter::before {
+  display: none; /* Hide default Ionic footer line */
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #18181b;
+  font-family: 'Montserrat', sans-serif; /* <-- FONT FIX */
+}
+
+.footerText {
+  color: #71717a;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0.75rem 0 1.25rem 0;
+  font-family: 'Montserrat', sans-serif; /* <-- FONT FIX */
+}
+
+.checkoutButton {
+  --background: #18181b; /* Dark background */
+  --color: #ffffff;
+  --background-hover: #3f3f46;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif; /* <-- FONT FIX */
+  margin: 0;
+  --border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* --- REMOVED CLEAR CART BUTTON STYLE --- */
+
+/* --- Modal Sizing on Desktop --- */
+@media (min-width: 768px) {
+  .cartModal {
+    --width: 420px;
+    --height: 90vh;
+    --border-radius: 8px;
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+}
