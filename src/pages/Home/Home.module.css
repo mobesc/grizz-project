@@ -2,7 +2,7 @@
 
 /* --- SNEAK PEEK STYLES --- */
 .sneakPeekSection {
-  padding: 3rem 0;
+  padding: 1.5rem 0; /* Your reduced padding */
 }
 
 .sneakPeekHeader {
@@ -28,6 +28,7 @@
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
+  white-space: nowrap; /* Prevent "See More" from wrapping */
 }
 
 .seeMoreButton:hover {
@@ -51,7 +52,7 @@
   margin-right: 1.5rem;
   background-color: #ffffff;
   border-radius: 16px;
-  overflow: hidden; /* Important for object-fit: cover */
+  overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -59,7 +60,7 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
-  background-color: #f4f4f5; /* Background for loading/errors */
+  background-color: #f4f4f5;
 }
 
 .productInfo {
@@ -128,26 +129,24 @@
 
 /* -- HERO SECTION (MODIFIED) -- */
 .heroSection {
-  min-height: 75vh;
+  min-height: 85vh;
   position: relative;
   text-align: center;
-  background-color: #18181b; /* Background for slide transitions */
+  background-color: #18181b;
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 2; /* Ensure overlay is above image but below content */
+  z-index: 2;
 }
 
 .heroContent {
   position: relative;
   z-index: 10;
-  padding-top: 25vh; /* <-- CHANGED: Increased padding */
-  padding-bottom: 2rem; 
-  padding-left: 1rem;   
-  padding-right: 1rem;  
+  /* --- KEY FIX: Use variable for padding --- */
+  padding: calc(var(--top-header-height) + 2rem) 1rem 4rem 1rem;
 }
 
 .heroTitle {
@@ -155,12 +154,12 @@
   font-size: 5rem;
   letter-spacing: 0.1em;
   color: #ffffff;
-  margin: 0; /* Adjusted */
-  line-height: 1; /* Adjusted */
+  margin: 0;
+  line-height: 1;
 }
 
 .heroSubtitle {
-  font-size: 0.90rem; /* Your tweaked size */
+  font-size: 0.90rem;
   color: #facc15;
   margin-top: 1rem;
   max-width: 42rem;
@@ -194,26 +193,24 @@
     font-size: 1.25rem;
   }
   .heroContent {
-    padding-top: 20vh; /* <-- CHANGED: Increased padding */
+    padding-top: 15vh; /* Reset padding for desktop */
   }
 }
 
 /* --- HERO BUTTONS --- */
 .heroButtonContainer {
-  margin-top: 2rem; /* Adds space above the buttons */
+  margin-top: 2rem;
   display: flex;
-  gap: 1rem; /* Adds space between the buttons */
+  gap: 1rem;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Allows buttons to stack on small screens */
+  flex-wrap: wrap;
 }
 
-/* This overrides the margin on the main ctaButton ONLY when it's in the hero */
 .heroButtonContainer .ctaButton {
   margin-top: 0;
 }
 
-/* This is the new "Learn More" button style */
 .secondaryButton {
   display: inline-block;
   background-color: transparent;
@@ -235,7 +232,7 @@
 /* --- SWIPER STYLES (MODIFIED) --- */
 .heroSwiper {
   width: 100%;
-  height: 75vh; 
+  height: 85vh; 
 }
 
 .heroSlide {
@@ -243,7 +240,7 @@
   height: 100%;
   background-position: center;
   display: flex;
-  align-items: flex-start; /* <-- Aligns content block to the top */
+  align-items: flex-start; /* <-- KEY FIX: Aligns content block to the top */
   justify-content: center;
 }
 
@@ -269,6 +266,31 @@
 }
 
 :global(.swiper-pagination-bullet-active) {
-  background-color: #facc15; /* Your primary yellow */
+  background-color: #facc15;
   opacity: 1;
+}
+
+/* --- RESPONSIVE STYLES FOR SMALL PHONES --- */
+@media (max-width: 380px) {
+  .heroTitle {
+    font-size: 4rem; /* Make hero title smaller */
+    line-height: 1.1;
+  }
+
+  .heroSubtitle {
+    font-size: 0.85rem;
+  }
+  
+  .ctaButton, .secondaryButton {
+    font-size: 1rem; /* Make buttons smaller */
+    padding: 0.6rem 1.5rem;
+  }
+  
+  .sneakPeekHeader .sectionHeader {
+    font-size: 2rem; /* Make "Our Beers" smaller */
+  }
+
+  .productCard {
+    flex: 0 0 240px; /* Make product cards a bit smaller */
+  }
 }

@@ -1,0 +1,190 @@
+/* src/components/LoginModal/LoginModal.module.css */
+
+.loginModal {
+  --background: #ffffff;
+}
+
+/* --- Header --- */
+.modalHeader {
+  border-bottom: 1px solid #f0f0f0;
+}
+.modalHeader ion-toolbar {
+  --background: #ffffff;
+  --border-width: 0; 
+}
+
+.closeButton {
+  --color: #18181b;
+  --color-hover: #71717a;
+  font-size: 1.6rem;
+}
+
+/* --- Content --- */
+.modalContent {
+  --background: #ffffff;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0 1rem 0;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: #facc15; /* Amber color */
+  letter-spacing: 0.1em;
+  margin: 0;
+  font-weight: bold;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 1.75rem;
+  color: #18181b;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #71717a;
+  margin: 0 0 1rem 0;
+}
+
+.orSeparator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #a1a1aa;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+.orSeparator::before,
+.orSeparator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #f0f0f0;
+}
+.orSeparator:not(:empty)::before {
+  margin-right: .5em;
+}
+.orSeparator:not(:empty)::after {
+  margin-left: .5em;
+}
+
+.formItem {
+  --background: #ffffff;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.formItem ion-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500; /* Lighter than bold */
+  color: #71717a;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+}
+
+.formItem[aria-label="Email"] ion-label,
+.formItem[aria-label="Password"] ion-label {
+  font-weight: 500;
+  color: #71717a;
+  font-size: 0.9rem;
+}
+
+.formItem ion-input {
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.submitButton {
+  --background: #f4f4f5; /* Light grey, like 'Continue' */
+  --background-hover: #e4e4e7;
+  --color: #18181b; /* Dark text */
+  font-weight: 600; /* Less bold */
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 1rem;
+  --border-radius: 4px;
+  font-size: 1rem;
+  --padding-top: 0.75rem;
+  --padding-bottom: 0.75rem;
+  --box-shadow: none; /* Flat button */
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.5rem;
+  color: #facc15;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.toggleButton:hover {
+  color: #eab308;
+}
+
+.errorMessage {
+  color: #ef4444; /* red-500 */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0;
+}
+
+/* --- Footer --- */
+.modalFooter {
+  background: #ffffff;
+}
+.modalFooter::before {
+  display: none; /* Hide default Ionic footer line */
+}
+
+.modalFooter ion-toolbar {
+  --background: #ffffff;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  --border-width: 0;
+  padding: 0.5rem 1rem 1rem 1rem; /* Padding for the links */
+  --min-height: auto;
+}
+
+.footerLink {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #71717a;
+  text-decoration: none;
+}
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+
+/* --- Modal Sizing on Desktop --- */
+@media (min-width: 768px) {
+  .loginModal {
+    --width: 420px;
+    --height: auto; /* Auto-adjust height */
+    --border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+}

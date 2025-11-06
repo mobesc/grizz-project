@@ -21,10 +21,12 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import TopHeader from './components/TopHeader/TopHeader';
 import SideMenu from './components/SideMenu/SideMenu';
 import SplashScreen from './components/SplashScreen/SplashScreen';
-import CartModal from './components/CartModal/CartModal'; // <-- IMPORT NEW MODAL
+import CartModal from './components/CartModal/CartModal';
+import LoginModal from './components/LoginModal/LoginModal'; 
 
-// Import Cart Provider
-import { CartProvider } from './context/CartContext'; // <-- IMPORT PROVIDER
+// Import Providers
+import { CartProvider } from './context/CartContext'; 
+import { AuthProvider } from './context/AuthContext'; // <-- IMPORT AUTH PROVIDER
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -47,9 +49,9 @@ setupIonicReact();
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const menuRef = useRef<HTMLIonMenuElement>(null);
-
-  // --- NEW: State for Cart Modal ---
+  
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
 
   useEffect(() => {
     setTimeout(() => {
@@ -71,47 +73,54 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      {/* Wrap the router content with CartProvider */}
-      <CartProvider>
-        <IonReactRouter>
-          <SideMenu
-            menuRef={menuRef}
-            onClose={closeMenu}
-          />
-          <TopHeader
-            onMenuToggle={toggleMenu}
-            onCartClick={() => setIsCartOpen(true)} // <-- NEW: Pass function to open modal
-          />
-          
-          {/* --- NEW: Add the Cart Modal here --- */}
-          <CartModal 
-            isOpen={isCartOpen}
-            onClose={() => setIsCartOpen(false)}
-          />
+      {/* --- WRAP WITH AUTH PROVIDER --- */}
+      <AuthProvider>
+        <CartProvider>
+          <IonReactRouter>
+            <SideMenu
+              menuRef={menuRef}
+              onClose={closeMenu}
+              onLoginClick={() => setIsLoginModalOpen(true)}
+            />
+            <TopHeader
+              onMenuToggle={toggleMenu}
+              onCartClick={() => setIsCartOpen(true)}
+              onLoginClick={() => setIsLoginModalOpen(true)} 
+            />
+            
+            <CartModal 
+              isOpen={isCartOpen}
+              onClose={() => setIsCartOpen(false)}
+            />
 
-          <IonRouterOutlet id="main-content">
-            {/* Main Tab Routes */}
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/beers" component={Beers} />
-            <Route exact path="/about" component={About} />
+            <LoginModal 
+              isOpen={isLoginModalOpen}
+              onClose={() => setIsLoginModalOpen(false)}
+            />
 
-            {/* Product Detail Route */}
-            <Route exact path="/beer/:productId" component={ProductPage} />
+            <IonRouterOutlet id="main-content">
+              {/* Main Tab Routes */}
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/beers" component={Beers} />
+              <Route exact path="/about" component={About} />
 
-            {/* Side Menu Routes */}
-            <Route exact path="/history" component={History} />
-            <Route exact path="/login" component={Home} />
-            <Route exact path="/product-info" component={Home} />
-            <Route exact path="/developers" component={Home} />
-            <Route exact path="/contact" component={Home} />
-            <Route exact path="/locations" component={Home} />
-            <Route exact path="/settings" component={Home} />
+              {/* Product Detail Route */}
+              <Route exact path="/beer/:productId" component={ProductPage} />
 
-            {/* Default Redirect */}
-            <Redirect exact from="/" to="/home" />
-          </IonRouterOutlet>
-        </IonReactRouter>
-      </CartProvider> {/* <-- END PROVIDER WRAP */}
+              {/* Side Menu Routes */}
+              <Route exact path="/history" component={History} />
+              <Route exact path="/product-info" component={Home} />
+              <Route exact path="/developers" component={Home} />
+              <Route exact path="/contact" component={Home} />
+              <Route exact path="/locations" component={Home} />
+              <Route exact path="/settings" component={Home} />
+
+              {/* Default Redirect */}
+              <Redirect exact from="/" to="/home" />
+            </IonRouterOutlet>
+          </IonReactRouter>
+        </CartProvider>
+      </AuthProvider>
     </IonApp>
   );
 };

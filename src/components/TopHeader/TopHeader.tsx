@@ -1,31 +1,29 @@
 // src/components/TopHeader/TopHeader.tsx
 
 import { IonIcon, useIonRouter, IonBadge } from '@ionic/react';
-import { cartOutline, menuOutline, searchOutline, personOutline }from 'ionicons/icons';
+import { cartOutline, menuOutline, searchOutline, personOutline } from 'ionicons/icons';
 import styles from './TopHeader.module.css';
 import { useCart } from '../../context/CartContext';
 
 interface TopHeaderProps {
   onMenuToggle: () => void;
-  onCartClick: () => void; // <-- Prop to open the modal
+  onCartClick: () => void;
+  onLoginClick: () => void; // <-- NEW PROP
 }
 
-const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle, onCartClick }) => { // <-- Get prop
+const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle, onCartClick, onLoginClick }) => { // <-- Get prop
   const router = useIonRouter();
   const { getCartItemCount } = useCart();
   const cartItemCount = getCartItemCount();
 
-  const goToLogin = () => {
-    router.push('/login', 'root', 'replace');
-  };
+  // --- REMOVED goToLogin function ---
 
   const goToHome = () => {
     router.push('/home', 'root', 'replace');
   }
 
-  // --- MODIFIED: This function now calls the prop from App.tsx ---
   const handleCartClick = () => {
-    onCartClick(); // <-- It should ONLY have this line
+    onCartClick(); 
   };
 
   return (
@@ -36,7 +34,8 @@ const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle, onCartClick }) => {
           <button className={styles.iconButton} onClick={onMenuToggle}>
             <IonIcon icon={menuOutline} />
           </button>
-          <button className={styles.iconButton} onClick={goToLogin}>
+          {/* --- UPDATED onClick --- */}
+          <button className={styles.iconButton} onClick={onLoginClick}>
             <IonIcon icon={personOutline} />
           </button>
         </div>

@@ -24,6 +24,14 @@
   ion-content {
     --background: #f9f9f9;
   }
+
+  /* --- NEW: ADDED HEADER HEIGHT VARIABLES --- */
+  --top-header-height: 70px;
 }
 
-/* Ensure NO .cart-toast-top-offset styles are present here */
+/* On small screens, match the header's media query */
+@media (max-width: 380px) {
+  :root {
+    --top-header-height: 60px;
+  }
+}

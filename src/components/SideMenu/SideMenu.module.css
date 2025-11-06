@@ -5,14 +5,13 @@
   --background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* Makes menu slide OVER the header */
 }
-
-/* -- Profile Section Styles Have Been Removed -- */
 
 /* -- Menu List Styles -- */
 .menuList {
   background: transparent;
-  margin-top: 60px; 
+  margin-top: 20px; 
 }
 
 .menuItem {
@@ -43,4 +42,99 @@
   height: 1px;
   background-color: rgba(0, 0, 0, 0.1); /* Light divider */
   margin: 0.5rem 1.5rem;
+}
+
+/* --- LOGIN ITEM STYLES (Logged Out) --- */
+.loginItem {
+  font-weight: bold;
+  --color: #18181b; /* Darker, bolder text */
+  --padding-start: 0; 
+  --padding-end: 0;
+  --inner-padding-end: 0;
+}
+
+.loginContent { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0; 
+}
+
+.loginIcon {
+  color: #facc15; /* Yellow icon */
+  font-size: 3.5rem; 
+  margin-bottom: 0.5rem; 
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+.loginItem:hover {
+  --color: #000000;
+  --background: rgba(250, 204, 21, 0.2);
+}
+.loginItem:hover .loginIcon {
+  color: #eab308; /* Darker yellow on hover */
+}
+
+
+/* --- PROFILE ITEM STYLES (Logged In) --- */
+.profileItem {
+  --padding-start: 0; 
+  --padding-end: 0;
+  --inner-padding-end: 0;
+  /* Add some background to this section to make it stand out */
+  --background: #fffbe6; /* A light yellow background */
+  padding: 1rem 0; /* Add vertical padding to the item itself */
+}
+
+.profileItem .loginContent {
+  padding-bottom: 0; /* Remove padding from this div as it's now on the parent item */
+}
+
+.profileAvatar {
+  width: 56px; /* 3.5rem */
+  height: 56px; /* 3.5rem */
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  border: 2px solid #facc15;
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+.profileEmail {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #3f3f46;
+  margin-bottom: 0.5rem; /* Space between email and buttons */
+}
+
+.changePhotoButton { /* NEW */
+  --color: #facc15;
+  --color-hover: #eab308;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem; /* Smaller font for this button */
+  margin-top: 0; /* Align with email */
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  text-transform: uppercase;
+  height: 2.2rem; /* Make button slightly smaller */
+  margin-bottom: 0.5rem; /* Space between change photo and logout */
+}
+
+.logoutButton {
+  --color: #facc15;
+  --color-hover: #eab308;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0; /* Adjusted for new button above it */
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  text-transform: none;
+}
+
+.hiddenButton { /* NEW: Utility class for action sheet */
+  display: none;
 }
