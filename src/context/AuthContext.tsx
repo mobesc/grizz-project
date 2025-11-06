@@ -11,9 +11,9 @@ interface User {
 // Define the shape of the context
 interface AuthContextState {
   user: User | null; // The user is either an object or null
-  login: (email: string) => void; // Function to log in
-  logout: () => void; // Function to log out
-  updateProfilePhoto: (photoURL: string | null) => void; // <-- NEW: Function to update photo
+  login: (email: string, rememberMe: boolean) => void; 
+  logout: () => void; 
+  updateUserProfile: (updates: Partial<User>) => void; // <-- NEW FUNCTION
 }
 
 // Create the context
@@ -30,15 +30,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // --- MOCK LOGIN/LOGOUT FUNCTIONS ---
   // In a real app, you'd call Firebase here
   
-  const login = (email: string) => {
+  const login = (email: string, rememberMe: boolean) => { 
     const mockUser: User = {
       email: email,
-      photoURL: null // Start with no photo by default
-      // To test with a photo, uncomment and paste a URL here:
-      // photoURL: 'https://i.pravatar.cc/150'
+      photoURL: null 
+      // photoURL: 'https://i.pravatar.cc/150' // <-- Example: Uncomment to test with a photo
     };
     setUser(mockUser);
     console.log("Mock user logged in:", mockUser);
+    console.log("Remember Me:", rememberMe); 
   };
 
   const logout = () => {
@@ -46,16 +46,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     console.log("User logged out.");
   };
 
-  // --- NEW: Function to update profile photo ---
-  const updateProfilePhoto = (photoURL: string | null) => {
-    if (user) {
-      setUser({ ...user, photoURL: photoURL });
-      console.log("Profile photo updated:", photoURL);
-    }
+  // --- NEW: Update User Profile Function ---
+  const updateUserProfile = (updates: Partial<User>) => {
+    setUser(prevUser => {
+      if (!prevUser) return null; // Can't update if no user is logged in
+      const updated = { ...prevUser, ...updates };
+      console.log("User profile updated:", updated);
+      return updated;
+    });
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, updateProfilePhoto }}> {/* <-- NEW: Pass updateProfilePhoto */}
+    <AuthContext.Provider value={{ user, login, logout, updateUserProfile }}> {/* <-- ADD NEW FUNCTION */}
       {children}
     </AuthContext.Provider>
   );

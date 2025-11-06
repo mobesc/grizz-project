@@ -58,14 +58,14 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 0.5rem 0; 
+  padding: 0rem 0; 
 }
 
 .loginIcon {
-  color: #facc15; /* Yellow icon */
-  font-size: 3.5rem; 
+  color: #facc15; 
+  font-size: 6rem; 
   margin-bottom: 0.5rem; 
-  cursor: pointer; /* Indicate it's clickable */
+  cursor: pointer;
 }
 
 .loginItem:hover {
@@ -77,18 +77,16 @@
 }
 
 
-/* --- PROFILE ITEM STYLES (Logged In) --- */
+/* --- UPDATED: PROFILE ITEM STYLES (Logged In) --- */
 .profileItem {
   --padding-start: 0; 
   --padding-end: 0;
   --inner-padding-end: 0;
-  /* Add some background to this section to make it stand out */
-  --background: #fffbe6; /* A light yellow background */
-  padding: 1rem 0; /* Add vertical padding to the item itself */
+  /* REMOVED cursor: pointer; from the item */
 }
 
 .profileItem .loginContent {
-  padding-bottom: 0; /* Remove padding from this div as it's now on the parent item */
+  padding-bottom: 1rem;
 }
 
 .profileAvatar {
@@ -98,7 +96,12 @@
   object-fit: cover;
   margin-bottom: 0.5rem;
   border: 2px solid #facc15;
-  cursor: pointer; /* Indicate it's clickable */
+  cursor: pointer; /* <-- ADDED */
+}
+
+/* --- Make the default icon clickable too --- */
+.profileItem .loginIcon {
+  cursor: pointer; /* <-- ADDED */
 }
 
 .profileEmail {
@@ -106,21 +109,6 @@
   font-weight: 600;
   font-size: 0.9rem;
   color: #3f3f46;
-  margin-bottom: 0.5rem; /* Space between email and buttons */
-}
-
-.changePhotoButton { /* NEW */
-  --color: #facc15;
-  --color-hover: #eab308;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 0.75rem; /* Smaller font for this button */
-  margin-top: 0; /* Align with email */
-  --padding-start: 1rem;
-  --padding-end: 1rem;
-  text-transform: uppercase;
-  height: 2.2rem; /* Make button slightly smaller */
-  margin-bottom: 0.5rem; /* Space between change photo and logout */
 }
 
 .logoutButton {
@@ -129,12 +117,8 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
-  margin-top: 0; /* Adjusted for new button above it */
+  margin-top: 0.5rem;
   --padding-start: 1rem;
   --padding-end: 1rem;
   text-transform: none;
-}
-
-.hiddenButton { /* NEW: Utility class for action sheet */
-  display: none;
 }

@@ -1,6 +1,6 @@
 // src/components/SideMenu/SideMenu.tsx
 
-import React, { useRef } from 'react'; // <-- ADD useRef
+import React from 'react'; // <-- REMOVED useState
 import {
   IonContent,
   IonIcon,
@@ -10,7 +10,7 @@ import {
   IonMenu,
   HTMLIonMenuElement,
   IonButton,
-  useIonActionSheet // <-- NEW: IMPORT useIonActionSheet
+  useIonRouter // <-- NEW IMPORT
 } from '@ionic/react';
 import {
   homeOutline,
@@ -23,13 +23,13 @@ import {
   documentTextOutline,
   bookOutline,
   personCircleOutline,
-  logOutOutline,
-  cameraOutline, // <-- NEW ICON
-  trashOutline // <-- NEW ICON
+  logOutOutline 
+  // REMOVED cameraOutline
 } from 'ionicons/icons';
 import styles from './SideMenu.module.css';
 import { useAuth } from '../../context/AuthContext'; 
 
+// 1. Define the props
 interface SideMenuProps {
   menuRef: React.RefObject<HTMLIonMenuElement>;
   onClose: () => void;
@@ -37,9 +37,8 @@ interface SideMenuProps {
 }
 
 const SideMenu: React.FC<SideMenuProps> = ({ menuRef, onClose, onLoginClick }) => {
-  const { user, logout, updateProfilePhoto } = useAuth(); // <-- NEW: Get updateProfilePhoto
-  const fileInputRef = useRef<HTMLInputElement>(null); // <-- NEW: Ref for hidden file input
-  const [presentActionSheet] = useIonActionSheet(); // <-- NEW: Action sheet hook
+  const { user, logout } = useAuth(); 
+  const router = useIonRouter(); // <-- NEW: Initialize router
 
   const menuItems = [
     { text: 'Home', icon: homeOutline, path: '/home' },
@@ -63,56 +62,10 @@ const SideMenu: React.FC<SideMenuProps> = ({ menuRef, onClose, onLoginClick }) =
     onClose(); // Close the menu
   };
 
-  // --- NEW: Handle file input change ---
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        // Convert the image to a Base64 string and update the profile photo
-        updateProfilePhoto(reader.result as string);
-      };
-      reader.readAsDataURL(file); // Read the file as a data URL
-    }
-  };
-
-  // --- NEW: Show action sheet for changing photo ---
-  const handleChangePhotoClick = () => {
-    presentActionSheet({
-      header: 'Change Profile Photo',
-      buttons: [
-        // {
-        //   text: 'Take Photo',
-        //   icon: cameraOutline,
-        //   handler: () => {
-        //     // In a real app, you'd use a camera plugin here (e.g., @capacitor/camera)
-        //     console.log('Take Photo clicked');
-        //   },
-        // },
-        {
-          text: 'Upload from Gallery',
-          icon: cameraOutline,
-          handler: () => {
-            fileInputRef.current?.click(); // Trigger the hidden file input
-          },
-        },
-        {
-          text: 'Remove Photo',
-          icon: trashOutline,
-          role: 'destructive',
-          handler: () => {
-            updateProfilePhoto(null); // Set photoURL to null
-          },
-          // Only show "Remove Photo" if there's an actual photo
-          cssClass: user?.photoURL ? '' : styles.hiddenButton, 
-        },
-        {
-          text: 'Cancel',
-          icon: 'close',
-          role: 'cancel',
-        },
-      ],
-    });
+  // --- NEW: Handler for clicking the profile icon/image ---
+  const handleProfileClick = () => {
+    router.push('/account'); // Navigate to the new page
+    onClose(); // Close the menu
   };
 
   return (
@@ -126,7 +79,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ menuRef, onClose, onLoginClick }) =
         {/* Navigation List */}
         <IonList className={styles.menuList}>
 
-          {/* --- Conditional Login/Profile Item --- */}
+          {/* --- UPDATED: Conditional Login/Profile Item --- */}
           {user ? (
             // --- User is LOGGED IN ---
             <IonItem 
@@ -138,32 +91,21 @@ const SideMenu: React.FC<SideMenuProps> = ({ menuRef, onClose, onLoginClick }) =
                   <img 
                     src={user.photoURL} 
                     alt="Profile" 
-                    className={styles.profileAvatar} 
-                    onClick={handleChangePhotoClick} // <-- Make avatar clickable
+                    className={styles.profileAvatar}
+                    onClick={handleProfileClick} // <-- MAKE CLICKABLE
                   />
                 ) : (
                   <IonIcon 
                     icon={personCircleOutline} 
-                    className={styles.loginIcon} 
-                    onClick={handleChangePhotoClick} // <-- Make icon clickable
+                    className={styles.loginIcon}
+                    onClick={handleProfileClick} // <-- MAKE CLICKABLE
                   />
                 )}
                 <IonLabel className={styles.profileEmail}>{user.email}</IonLabel>
-                
-                {/* NEW: Change Photo button */}
-                <IonButton 
-                  fill="clear" 
-                  className={styles.changePhotoButton}
-                  onClick={handleChangePhotoClick}
-                >
-                  <IonIcon icon={cameraOutline} slot="start" />
-                  CHANGE PHOTO
-                </IonButton>
-
                 <IonButton 
                   fill="clear" 
                   className={styles.logoutButton}
-                  onClick={handleLogoutClick}
+                  onClick={handleLogoutClick} // Don't stop propagation
                 >
                   <IonIcon icon={logOutOutline} slot="start" />
                   Logout
@@ -188,14 +130,6 @@ const SideMenu: React.FC<SideMenuProps> = ({ menuRef, onClose, onLoginClick }) =
           <div className={styles.divider}></div>
           {/* --- END NEW ITEM --- */}
 
-          {/* NEW: Hidden file input */}
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            style={{ display: 'none' }} // Keep it hidden
-          />
 
           {menuItems.map((item, index) => (
             item.text === 'About Us' ? (
@@ -228,6 +162,9 @@ const SideMenu: React.FC<SideMenuProps> = ({ menuRef, onClose, onLoginClick }) =
           ))}
         </IonList>
       </IonContent>
+
+      {/* --- REMOVED ACTION SHEET --- */}
+      
     </IonMenu>
   );
 };

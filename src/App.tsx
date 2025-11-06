@@ -52,6 +52,9 @@ const App: React.FC = () => {
   
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
+  
+  // --- NEW: State to manage loading for the login modal ---
+  const [isLoginLoading, setIsLoginLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -59,6 +62,7 @@ const App: React.FC = () => {
     }, 3000);
   }, []);
 
+  // Show initial splash screen
   if (isLoading) {
     return <SplashScreen />;
   }
@@ -71,6 +75,17 @@ const App: React.FC = () => {
     menuRef.current?.close();
   };
 
+  // --- NEW: Function to handle the login click ---
+  const handleLoginClick = () => {
+    setIsLoginLoading(true); // Show the splash screen overlay
+
+    // Wait for 1.5 seconds, then hide splash and show modal
+    setTimeout(() => {
+      setIsLoginLoading(false);
+      setIsLoginModalOpen(true);
+    }, 1500); // 1.5 second delay
+  };
+
   return (
     <IonApp>
       {/* --- WRAP WITH AUTH PROVIDER --- */}
@@ -80,12 +95,12 @@ const App: React.FC = () => {
             <SideMenu
               menuRef={menuRef}
               onClose={closeMenu}
-              onLoginClick={() => setIsLoginModalOpen(true)}
+              onLoginClick={handleLoginClick} // <-- UPDATED PROP
             />
             <TopHeader
               onMenuToggle={toggleMenu}
               onCartClick={() => setIsCartOpen(true)}
-              onLoginClick={() => setIsLoginModalOpen(true)} 
+              onLoginClick={handleLoginClick} // <-- UPDATED PROP
             />
             
             <CartModal 
@@ -121,6 +136,9 @@ const App: React.FC = () => {
           </IonReactRouter>
         </CartProvider>
       </AuthProvider>
+
+      {/* --- NEW: Conditionally render splash screen as an overlay --- */}
+      {isLoginLoading && <SplashScreen />}
     </IonApp>
   );
 };

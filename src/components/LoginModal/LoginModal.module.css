@@ -113,6 +113,26 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+/* --- NEW STYLE FOR REMEMBER ME --- */
+.rememberItem {
+  --background: transparent;
+  --min-height: auto;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+.rememberItem ion-label {
+  padding-left: 0.5rem;
+  font-size: 0.9rem;
+}
+.rememberItem ion-checkbox {
+  --border-radius: 4px;
+  --border-color: #ddd;
+  --border-color-checked: #facc15;
+  --background-checked: #facc15;
+  --checkmark-color: #000;
+  margin: 0;
+}
+
 .submitButton {
   --background: #f4f4f5; /* Light grey, like 'Continue' */
   --background-hover: #e4e4e7;

@@ -13,11 +13,12 @@ import {
   IonItem,
   IonInput,
   IonLabel,
-  IonFooter
+  IonFooter,
+  IonCheckbox // <-- NEW IMPORT
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import styles from './LoginModal.module.css';
-import { useAuth } from '../../context/AuthContext'; // <-- IMPORT useAuth
+import { useAuth } from '../../context/AuthContext'; 
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -32,8 +33,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [rememberMe, setRememberMe] = useState(false); // <-- NEW STATE
 
-  const { login } = useAuth(); // <-- Get login function from context
+  const { login } = useAuth(); 
 
   // Clear form when closing
   const handleClose = () => {
@@ -41,6 +43,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
     setPassword('');
     setConfirmPassword('');
     setError('');
+    setRememberMe(false); // <-- RESET
     setView('login');
     onClose();
   };
@@ -49,9 +52,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
     setError(''); 
     
-    // --- UPDATED: Call the global login function ---
-    login(email); 
-    // ---
+    login(email, rememberMe); // <-- PASS rememberMe
     
     handleClose(); // Close modal on successful login
   };
@@ -64,9 +65,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
     }
     setError(''); 
     
-    // --- UPDATED: Call the global login function (acts as registration for now) ---
-    login(email);
-    // ---
+    // Registering doesn't need "remember me", so we pass false
+    login(email, false); 
     
     handleClose(); // Close modal on successful registration
   };
@@ -98,11 +98,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
           /* --- LOGIN FORM --- */
           <form className={styles.formContainer} onSubmit={handleLogin}>
             <h2 className={styles.title}>Sign in</h2>
-            <p className={styles.subtitle}>Choose how you'd like to sign in</p>
-            
-            <div className={styles.orSeparator}>
-              <span>or</span>
-            </div>
+
 
             <IonItem className={styles.formItem}>
               <IonLabel position="floating">Email</IonLabel>
@@ -121,6 +117,16 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 value={password}
                 onIonInput={(e) => setPassword(e.detail.value!)}
                 required
+              />
+            </IonItem>
+
+            {/* --- NEW REMEMBER ME CHECKBOX --- */}
+            <IonItem lines="none" className={styles.rememberItem}>
+              <IonLabel>Remember Me</IonLabel>
+              <IonCheckbox 
+                slot="start"
+                checked={rememberMe}
+                onIonChange={(e) => setRememberMe(e.detail.checked)}
               />
             </IonItem>
 

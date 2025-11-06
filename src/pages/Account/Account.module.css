@@ -1,0 +1,87 @@
+/* src/pages/Account/Account.module.css */
+
+.mainContainer {
+  --background: #f9f9f9;
+  --padding-top: 1rem;
+}
+
+.contentWrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* --- Profile Image --- */
+.profileImageSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 2rem;
+}
+
+.profileImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #facc15;
+}
+
+.profileIcon {
+  font-size: 100px;
+  color: #facc15;
+}
+
+.changeButton {
+  --color: #facc15;
+  --color-hover: #eab308;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: none;
+}
+
+/* --- Form --- */
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formItem {
+  --background: #ffffff;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.formItem ion-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #71717a;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+}
+
+.formItem ion-input {
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.saveButton {
+  --background: #facc15;
+  --background-hover: #eab308;
+  --color: #000;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 2rem;
+  --border-radius: 4px;
+  font-size: 1rem;
+  --padding-top: 0.75rem;
+  --padding-bottom: 0.75rem;
+}
