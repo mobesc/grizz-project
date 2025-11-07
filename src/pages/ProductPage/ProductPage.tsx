@@ -7,49 +7,63 @@ import styles from './ProductPage.module.css';
 import { chevronBackOutline, checkmarkCircle, star, starOutline } from 'ionicons/icons';
 import { useCart } from '../../context/CartContext';
 
-// --- MOCK DATA with NEW PHP prices ---
+// --- MOCK DATA with NEW PHP prices AND RENAMED PRODUCTS ---
 const beerDatabase: { [key: string]: any } = {
-  'grizzly-gold': {
-    id: 'grizzly-gold',
-    name: 'GRIZZLY GOLD',
-    type: 'Golden Ale',
-    description: 'Our main Golden Ale, Grizzly Gold, is both easy to drink and flavorful. We use pale malts for a light body and color, adding Cascade hops for hints of citrus. It has a clean fermentation, highlighting the quality ingredients. Great with lighter foods or by itself after spending time outdoors.',
+  'glacier-punch': {
+    id: 'glacier-punch',
+    name: 'GLACIER PUNCH',
+    type: 'Pilsner',
+    description: 'A crisp, arctic-inspired pilsner with a chillingly smooth finish. Brewed with mountain-pure water and a hint of icy mint, it\'s the perfect refreshment for cooling down.',
     imageUrl: '/assets/product1.png',
-    price: 719.00, // <-- CHANGED
-    abv: 5.2,
-    ibu: 25,
+    price: 719.00,
+    abv: 5.0,
+    ibu: 22,
     volume: '6-Pack (12oz Cans)',
     availability: 'Year-Round',
     rating: 4.5,
     reviewCount: 128
   },
-  'midnight-paws': {
-    id: 'midnight-paws',
-    name: 'MIDNIGHT PAWS',
-    type: 'Porter',
-    description: 'Try the deep flavors of Midnight Paws Porter. This strong beer uses roasted barley and chocolate malt for notes of coffee, dark chocolate, and a touch of caramel. Balanced hop bitterness leads to a rich, smooth finish.',
+  'apple-riz': {
+    id: 'apple-riz',
+    name: 'APPLE RIZ',
+    type: 'Hard Apple Cider',
+    description: 'A hard apple cider with a bold, electric taste. This isn\'t your standard cider; it\'s refreshingly tart with a sweet apple kick that\'s shockingly good. Get the Rizz.',
     imageUrl: '/assets/product2.png',
-    price: 799.00, // <-- CHANGED
-    abv: 6.0,
-    ibu: 35,
+    price: 799.00,
+    abv: 7.5,
+    ibu: 10,
     volume: '6-Pack (12oz Cans)',
     availability: 'Year-Round',
     rating: 4.8,
     reviewCount: 95
   },
-  'forest-haze': {
-    id: 'forest-haze',
-    name: 'FOREST HAZE',
-    type: 'Hazy IPA',
-    description: 'Enjoy our Forest Haze IPA, heavily hopped with Citra and Mosaic for strong tropical fruit smells like mango and citrus. Oats and wheat give it a full, soft texture and its hazy look. Low bitterness makes it extra juicy and smooth.',
+  'honey-bees': {
+    id: 'honey-bees',
+    name: 'HONEY BEES',
+    type: 'Honey Ale',
+    description: 'A sweet, golden honey ale. We brew this with a touch of real, locally-sourced honey for a smooth, nectar-like flavor that\'s buzzing with taste. A truly sweet escape.',
     imageUrl: '/assets/product3.png',
-    price: 919.00, // <-- CHANGED
-    abv: 6.5,
-    ibu: 40,
+    price: 919.00,
+    abv: 7.5,
+    ibu: 20,
     volume: '4-Pack (16oz Cans)',
     availability: 'Seasonal Release',
     rating: 4.6,
     reviewCount: 210
+  },
+  'berry-blast': {
+    id: 'berry-blast',
+    name: 'BERRY BLAST',
+    type: 'Fruited Ale',
+    description: 'A vibrant, fruity ale bursting with a mix of wild berries. This brew is a sweet and tangy explosion of flavor, with notes of raspberry, blueberry, and a hint of cherry. It\'s a blast in every sip.',
+    imageUrl: '/assets/product4.png',
+    price: 899.00, 
+    abv: 7.5,
+    ibu: 15,
+    volume: '4-Pack (16oz Cans)',
+    availability: 'Limited Edition',
+    rating: 4.7,
+    reviewCount: 150
   }
 };
 // --- END MOCK DATA ---

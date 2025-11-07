@@ -38,9 +38,9 @@ const Home: React.FC = () => {
 
   // Featured beers with NEW image paths
   const featuredBeers = [
-    { id: 'grizzly-gold', name: 'GRIZZLY GOLD', type: 'Golden Ale', imageUrl: '/assets/product1.png' }, // <-- NEW IMAGE
-    { id: 'midnight-paws', name: 'MIDNIGHT PAWS', type: 'Porter', imageUrl: '/assets/product2.png' }, // <-- NEW IMAGE
-    { id: 'forest-haze', name: 'FOREST HAZE', type: 'Hazy IPA', imageUrl: '/assets/product3.png' }, // <-- NEW IMAGE
+    { id: 'glacier-punch', name: 'GLACIER PUNCH', type: 'Pilsner', imageUrl: '/assets/product1.png' },
+    { id: 'apple-riz', name: 'APPLE RIZ', type: 'Hard Apple Cider', imageUrl: '/assets/product2.png' },
+    { id: 'honey-bees', name: 'HONEY BEES', type: 'Honey Ale', imageUrl: '/assets/product3.png' },
   ];
 
   return (

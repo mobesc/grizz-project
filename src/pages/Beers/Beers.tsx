@@ -34,9 +34,10 @@ const BeerCard: React.FC<{ id: string; name: string; price: number; imageUrl: st
 
 // --- MOCK DATA ---
 const beerList = [
-    { id: 'grizzly-gold', name: 'GRIZZLY GOLD', type: 'Golden Ale', description: 'A light, crisp golden ale with a hint of citrus.', imageUrl: '/assets/product1.png', price: 719.00 },
-    { id: 'midnight-paws', name: 'MIDNIGHT PAWS', type: 'Porter', description: 'Dark, rich, and roasty with notes of chocolate and coffee.', imageUrl: '/assets/product2.png', price: 799.00 },
-    { id: 'forest-haze', name: 'FOREST HAZE', type: 'Hazy IPA', description: 'A juicy, tropical IPA with low bitterness and a smooth finish.', imageUrl: '/assets/product3.png', price: 919.00 },
+    { id: 'glacier-punch', name: 'GLACIER PUNCH', type: 'Pilsner', description: 'A crisp, arctic-inspired pilsner...', imageUrl: '/assets/product1.png', price: 719.00 },
+    { id: 'apple-riz', name: 'APPLE RIZ', type: 'Hard Apple Cider', description: 'A hard apple cider with a bold, electric taste...', imageUrl: '/assets/product2.png', price: 799.00 },
+    { id: 'honey-bees', name: 'HONEY BEES', type: 'Honey Ale', description: 'A sweet, golden honey ale...', imageUrl: '/assets/product3.png', price: 919.00 },
+    { id: 'berry-blast', name: 'BERRY BLAST', type: 'Fruited Ale', description: 'A vibrant, fruity ale bursting with a mix of wild berries...', imageUrl: '/assets/product4.png', price: 899.00 },
 ];
 
 // --- NEW: Helper to get unique types for the filter ---

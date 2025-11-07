@@ -1,6 +1,6 @@
 // src/pages/Account/Account.tsx
 
-import React, { useState, useRef } from 'react'; // <-- IMPORT useRef
+import React, { useState, useRef, useEffect } from 'react';
 import {
   IonPage,
   IonHeader,
@@ -14,38 +14,45 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  useIonToast
+  useIonToast,
+  useIonRouter // <-- Import useIonRouter
 } from '@ionic/react';
 import { personCircleOutline } from 'ionicons/icons';
 import { useAuth } from '../../context/AuthContext';
 import styles from './Account.module.css';
 
 const Account: React.FC = () => {
-  const { user, updateUserProfile } = useAuth(); // <-- GET updateUserProfile
+  const { user, updateUserProfile } = useAuth();
   const [presentToast] = useIonToast();
+  const router = useIonRouter(); // <-- Get router
   
   // Create state for the form fields
-  // Initialize username from user's email if available, otherwise empty
-  const [username, setUsername] = useState(user?.email.split('@')[0] || '');
+  const [username, setUsername] = useState(user?.username || '');
 
   // Ref for the hidden file input
-  const fileInputRef = useRef<HTMLInputElement>(null); // <-- NEW REF
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // --- NEW: Redirect if not logged in ---
+  useEffect(() => {
+    if (!user) {
+      router.push('/home', 'root', 'replace');
+      presentToast({
+        message: 'You must be logged in to view this page.',
+        duration: 2000,
+        color: 'warning'
+      });
+    } else {
+      // Update username state if user data changes (e.g., on first load)
+      setUsername(user.username);
+    }
+  }, [user, router, presentToast]);
+
 
   const handleSaveChanges = () => {
-    if (!user) {
-      presentToast({
-        message: 'You must be logged in to save changes.',
-        duration: 2000,
-        color: 'danger'
-      });
-      return;
-    }
-
-    // In a real app, you'd send this to your backend/Firebase
-    console.log("Saving changes for:", user.email, "New username:", username);
+    if (!user) return; // Should be covered by useEffect, but good practice
 
     // Update the local state in AuthContext
-    updateUserProfile({ email: user.email, photoURL: user.photoURL }); // For now, email and photo remain same
+    updateUserProfile({ username: username });
 
     presentToast({
       message: 'Account details saved!',
@@ -54,20 +61,16 @@ const Account: React.FC = () => {
     });
   };
 
-  // --- NEW: Trigger click on hidden file input ---
   const handlePhotoClick = () => {
     fileInputRef.current?.click();
   };
 
-  // --- NEW: Handle file selection ---
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      // Create a URL for the selected image
       const reader = new FileReader();
       reader.onloadend = () => {
         const newPhotoURL = reader.result as string;
-        // Update the user's profile with the new photo URL
         updateUserProfile({ photoURL: newPhotoURL });
         presentToast({
           message: 'Profile photo updated!',
@@ -75,9 +78,14 @@ const Account: React.FC = () => {
           color: 'success'
         });
       };
-      reader.readAsDataURL(file); // Read the file as a data URL
+      reader.readAsDataURL(file);
     }
   };
+
+  // Don't render anything if the user is not logged in (will be redirected)
+  if (!user) {
+    return null;
+  }
 
   return (
     <IonPage>
@@ -93,42 +101,38 @@ const Account: React.FC = () => {
       <IonContent fullscreen className={styles.mainContainer}>
         <div className={styles.contentWrapper}>
           
-          {/* --- Profile Image Section --- */}
           <div className={styles.profileImageSection}>
-            {/* --- Clickable Image/Icon --- */}
             {user?.photoURL ? (
               <img 
                 src={user.photoURL} 
                 alt="Profile" 
                 className={styles.profileImage} 
-                onClick={handlePhotoClick} // <-- MAKE CLICKABLE
+                onClick={handlePhotoClick}
               />
             ) : (
               <IonIcon 
                 icon={personCircleOutline} 
                 className={styles.profileIcon} 
-                onClick={handlePhotoClick} // <-- MAKE CLICKABLE
+                onClick={handlePhotoClick}
               />
             )}
             <IonButton 
               fill="clear" 
               className={styles.changeButton}
-              onClick={handlePhotoClick} // <-- BUTTON ALSO TRIGGERS IT
+              onClick={handlePhotoClick}
             >
               Change Photo
             </IonButton>
             
-            {/* --- HIDDEN FILE INPUT --- */}
             <input
               type="file"
               accept="image/*"
               ref={fileInputRef}
-              style={{ display: 'none' }} // Hide the input
+              style={{ display: 'none' }}
               onChange={handleFileChange}
             />
           </div>
 
-          {/* --- Profile Form Section --- */}
           <div className={styles.formSection}>
             <IonItem className={styles.formItem}>
               <IonLabel position="floating">Username</IonLabel>

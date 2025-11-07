@@ -14,7 +14,7 @@ import {
   IonInput,
   IonLabel,
   IonFooter,
-  IonCheckbox // <-- NEW IMPORT
+  IonCheckbox
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import styles from './LoginModal.module.css';
@@ -33,9 +33,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [rememberMe, setRememberMe] = useState(false); // <-- NEW STATE
+  const [rememberMe, setRememberMe] = useState(false);
 
-  const { login } = useAuth(); 
+  const { login, register } = useAuth(); // <-- Get new register function
 
   // Clear form when closing
   const handleClose = () => {
@@ -43,21 +43,25 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
     setPassword('');
     setConfirmPassword('');
     setError('');
-    setRememberMe(false); // <-- RESET
+    setRememberMe(false);
     setView('login');
     onClose();
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(''); 
     
-    login(email, rememberMe); // <-- PASS rememberMe
+    const result = await login(email, password, rememberMe); // <-- Await result
     
-    handleClose(); // Close modal on successful login
+    if (result.success) {
+      handleClose(); // Close modal on successful login
+    } else {
+      setError(result.error || 'An unknown error occurred.'); // Show error
+    }
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -65,10 +69,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
     }
     setError(''); 
     
-    // Registering doesn't need "remember me", so we pass false
-    login(email, false); 
+    const result = await register(email, password); // <-- Await result
     
-    handleClose(); // Close modal on successful registration
+    if (result.success) {
+      handleClose(); // Close modal on successful registration
+    } else {
+      setError(result.error || 'An unknown error occurred.'); // Show error
+    }
   };
 
   return (
@@ -120,7 +127,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
               />
             </IonItem>
 
-            {/* --- NEW REMEMBER ME CHECKBOX --- */}
             <IonItem lines="none" className={styles.rememberItem}>
               <IonLabel>Remember Me</IonLabel>
               <IonCheckbox 
@@ -143,7 +149,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             <button
               type="button" 
               className={styles.toggleButton}
-              onClick={() => setView('register')}
+              onClick={() => { setView('register'); setError(''); }}
             >
               DON'T HAVE AN ACCOUNT? REGISTER
             </button>
@@ -195,7 +201,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             <button
               type="button" 
               className={styles.toggleButton}
-              onClick={() => setView('login')}
+              onClick={() => { setView('login'); setError(''); }}
             >
               ALREADY HAVE AN ACCOUNT? LOGIN
             </button>

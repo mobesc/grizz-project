@@ -16,6 +16,7 @@ import Beers from './pages/Beers/Beers';
 import About from './pages/About/About';
 import History from './pages/History/History';
 import ProductPage from './pages/ProductPage/ProductPage';
+import Account from './pages/Account/Account'; // <-- IMPORT ACCOUNT PAGE
 
 // Import Global UI Components
 import TopHeader from './components/TopHeader/TopHeader';
@@ -26,7 +27,7 @@ import LoginModal from './components/LoginModal/LoginModal';
 
 // Import Providers
 import { CartProvider } from './context/CartContext'; 
-import { AuthProvider } from './context/AuthContext'; // <-- IMPORT AUTH PROVIDER
+import { AuthProvider } from './context/AuthContext';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -53,7 +54,6 @@ const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
   
-  // --- NEW: State to manage loading for the login modal ---
   const [isLoginLoading, setIsLoginLoading] = useState(false);
 
   useEffect(() => {
@@ -62,7 +62,6 @@ const App: React.FC = () => {
     }, 3000);
   }, []);
 
-  // Show initial splash screen
   if (isLoading) {
     return <SplashScreen />;
   }
@@ -75,20 +74,17 @@ const App: React.FC = () => {
     menuRef.current?.close();
   };
 
-  // --- NEW: Function to handle the login click ---
   const handleLoginClick = () => {
-    setIsLoginLoading(true); // Show the splash screen overlay
+    setIsLoginLoading(true); 
 
-    // Wait for 1.5 seconds, then hide splash and show modal
     setTimeout(() => {
       setIsLoginLoading(false);
       setIsLoginModalOpen(true);
-    }, 1500); // 1.5 second delay
+    }, 1500);
   };
 
   return (
     <IonApp>
-      {/* --- WRAP WITH AUTH PROVIDER --- */}
       <AuthProvider>
         <CartProvider>
           <IonReactRouter>
@@ -97,7 +93,6 @@ const App: React.FC = () => {
               onClose={closeMenu}
               onLoginClick={handleLoginClick} 
             />
-            {/* --- UPDATED: Removed onLoginClick prop --- */}
             <TopHeader
               onMenuToggle={toggleMenu}
               onCartClick={() => setIsCartOpen(true)}
@@ -113,7 +108,6 @@ const App: React.FC = () => {
               onClose={() => setIsLoginModalOpen(false)}
             />
 
-            {/* --- UPDATED: Removed /locations and /settings routes --- */}
             <IonRouterOutlet id="main-content">
               {/* Main Tab Routes */}
               <Route exact path="/home" component={Home} />
@@ -129,16 +123,17 @@ const App: React.FC = () => {
               <Route exact path="/developers" component={Home} />
               <Route exact path="/contact" component={Home} />
 
+              {/* --- NEW ACCOUNT ROUTE --- */}
+              <Route exact path="/account" component={Account} />
+
               {/* Default Redirect */}
               <Redirect exact from="/" to="/home" />
             </IonRouterOutlet>
-            {/* --- END UPDATE --- */}
             
           </IonReactRouter>
         </CartProvider>
       </AuthProvider>
 
-      {/* --- NEW: Conditionally render splash screen as an overlay --- */}
       {isLoginLoading && <SplashScreen />}
     </IonApp>
   );

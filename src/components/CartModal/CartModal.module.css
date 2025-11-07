@@ -86,10 +86,12 @@
   border-radius: 4px;
   object-fit: cover;
   border: 1px solid #eee;
+  flex-shrink: 0; /* <-- FIX 1: Prevents image from shrinking */
 }
 
 .itemDetails {
   flex: 1; /* Takes up available space */
+  min-width: 0; /* <-- FIX 2: Allows this item to shrink properly */
 }
 
 .itemName {
@@ -112,6 +114,7 @@
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+  flex-wrap: wrap; /* <-- FIX 3: Allows "Remove" button to wrap under quantity */
 }
 
 .quantitySelector {
@@ -158,7 +161,7 @@
 .itemPrice {
   font-size: 1rem;
   font-weight: 600;
-  margin-left: auto; /* Pushes to the far right */
+  white-space: nowrap; /* <-- FIX 4: Prevents price from wrapping (e.g. "₱719." "00") */
 }
 
 /* --- Note Section --- */
