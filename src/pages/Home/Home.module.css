@@ -132,21 +132,25 @@
   min-height: 85vh;
   position: relative;
   text-align: center;
+  /* --- This color will only show if content is shorter than 85vh --- */
   background-color: #18181b;
+  /* --- FIX: Push section's content down by header height --- */
+  padding-top: var(--top-header-height);
+  box-sizing: border-box; /* Include padding in height calculation */
 }
 
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 2;
-}
+/* --- heroOverlay rule removed --- */
 
 .heroContent {
   position: relative;
   z-index: 10;
-  /* --- KEY FIX: Use variable for padding --- */
-  padding: calc(var(--top-header-height) + 2rem) 1rem 4rem 1rem;
+  padding: 1rem 1rem 4rem 1rem; /* Added 4rem bottom padding */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Push content to bottom */
+  align-items: center; /* Center buttons horizontally */
+  height: 100%;
 }
 
 .heroTitle {
@@ -193,13 +197,14 @@
     font-size: 1.25rem;
   }
   .heroContent {
-    padding-top: 15vh; /* Reset padding for desktop */
+    padding-top: 1rem;
+    padding-bottom: 5rem; /* More space on desktop */
   }
 }
 
 /* --- HERO BUTTONS --- */
 .heroButtonContainer {
-  margin-top: 2rem;
+  margin-top: 0;
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -232,37 +237,49 @@
 /* --- SWIPER STYLES (MODIFIED) --- */
 .heroSwiper {
   width: 100%;
-  height: 85vh; 
+  /* --- FIX: Adjust height to fill the space *inside* the padding --- */
+  height: calc(85vh - var(--top-header-height));
+  /* --- FIX: Removed position:absolute and top --- */
 }
 
 .heroSlide {
   width: 100%;
   height: 100%;
-  background-position: center;
+  /* --- UPDATED: Set position to center top --- */
+  background-position: center top; 
   display: flex;
-  align-items: flex-start; /* <-- KEY FIX: Aligns content block to the top */
+  align-items: flex-end; 
   justify-content: center;
 }
 
 /* Individual slide background images */
 .slide1 {
-  background-image: url('/assets/hero-background.jpg');
+  background-image: url('/assets/bg1.png');
+  /* --- UPDATED: Back to cover, positioned top --- */
   background-size: cover;
+  background-repeat: no-repeat;
 }
 .slide2 {
-  background-image: url('/assets/product1.png');
+  background-image: url('/assets/bg2.png');
+  /* --- UPDATED: Back to cover, positioned top --- */
   background-size: cover; 
+  background-repeat: no-repeat;
 }
 .slide3 {
-  background-image: url('/assets/product2.png');
+  background-image: url('/assets/bg3.png');
+  /* --- UPDATED: Back to cover, positioned top --- */
   background-size: cover; 
+  background-repeat: no-repeat;
 }
+
 
 /* Pagination Dot Styles */
 :global(.swiper-pagination-bullet) {
   background-color: #ffffff;
   opacity: 0.5;
   transition: all 0.3s ease;
+  position: relative; /* Ensure it's on top of the slide */
+  z-index: 10;
 }
 
 :global(.swiper-pagination-bullet-active) {

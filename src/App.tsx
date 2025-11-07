@@ -95,12 +95,12 @@ const App: React.FC = () => {
             <SideMenu
               menuRef={menuRef}
               onClose={closeMenu}
-              onLoginClick={handleLoginClick} // <-- UPDATED PROP
+              onLoginClick={handleLoginClick} 
             />
+            {/* --- UPDATED: Removed onLoginClick prop --- */}
             <TopHeader
               onMenuToggle={toggleMenu}
               onCartClick={() => setIsCartOpen(true)}
-              onLoginClick={handleLoginClick} // <-- UPDATED PROP
             />
             
             <CartModal 
@@ -113,6 +113,7 @@ const App: React.FC = () => {
               onClose={() => setIsLoginModalOpen(false)}
             />
 
+            {/* --- UPDATED: Removed /locations and /settings routes --- */}
             <IonRouterOutlet id="main-content">
               {/* Main Tab Routes */}
               <Route exact path="/home" component={Home} />
@@ -127,12 +128,12 @@ const App: React.FC = () => {
               <Route exact path="/product-info" component={Home} />
               <Route exact path="/developers" component={Home} />
               <Route exact path="/contact" component={Home} />
-              <Route exact path="/locations" component={Home} />
-              <Route exact path="/settings" component={Home} />
 
               {/* Default Redirect */}
               <Redirect exact from="/" to="/home" />
             </IonRouterOutlet>
+            {/* --- END UPDATE --- */}
+            
           </IonReactRouter>
         </CartProvider>
       </AuthProvider>

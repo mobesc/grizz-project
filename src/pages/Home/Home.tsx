@@ -68,9 +68,7 @@ const Home: React.FC = () => {
                 <SwiperSlide className={`${styles.heroSlide} ${styles.slide1}`}>
                   <div className={styles.heroOverlay}></div>
                   <div className={styles.heroContent}>
-                    <h2 className={styles.heroTitle}>CRAFTED.</h2>
-                    <h2 className={styles.heroTitle}>FEARLESS.</h2>
-                    <p className={styles.heroSubtitle}>We brew bold, untamed beer for the wild at heart.</p>
+                    {/* --- REMOVED TEXT --- */}
                     <div className={styles.heroButtonContainer}>
                       <a href="/beers" className={styles.ctaButton}>Order Now</a>
                       <a href="/about" className={styles.secondaryButton}>Learn More</a>
@@ -82,9 +80,7 @@ const Home: React.FC = () => {
                 <SwiperSlide className={`${styles.heroSlide} ${styles.slide2}`}>
                   <div className={styles.heroOverlay}></div>
                   <div className={styles.heroContent}>
-                    <h2 className={styles.heroTitle}>CRAFTED.</h2>
-                    <h2 className={styles.heroTitle}>FEARLESS.</h2>
-                    <p className={styles.heroSubtitle}>We brew bold, untamed beer for the wild at heart.</p>
+                    {/* --- REMOVED TEXT --- */}
                     <div className={styles.heroButtonContainer}>
                       <a href="/beers" className={styles.ctaButton}>Order Now</a>
                       <a href="/about" className={styles.secondaryButton}>Learn More</a>
@@ -96,9 +92,7 @@ const Home: React.FC = () => {
                 <SwiperSlide className={`${styles.heroSlide} ${styles.slide3}`}>
                   <div className={styles.heroOverlay}></div>
                   <div className={styles.heroContent}>
-                    <h2 className={styles.heroTitle}>CRAFTED.</h2>
-                    <h2 className={styles.heroTitle}>FEARLESS.</h2>
-                    <p className={styles.heroSubtitle}>We brew bold, untamed beer for the wild at heart.</p>
+                    {/* --- REMOVED TEXT --- */}
                     <div className={styles.heroButtonContainer}>
                       <a href="/beers" className={styles.ctaButton}>Order Now</a>
                       <a href="/about" className={styles.secondaryButton}>Learn More</a>

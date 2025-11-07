@@ -1,22 +1,21 @@
 // src/components/TopHeader/TopHeader.tsx
 
 import { IonIcon, useIonRouter, IonBadge } from '@ionic/react';
-import { cartOutline, menuOutline, searchOutline, personOutline } from 'ionicons/icons';
+// --- UPDATED: Removed searchOutline and personOutline ---
+import { cartOutline, menuOutline } from 'ionicons/icons'; 
 import styles from './TopHeader.module.css';
 import { useCart } from '../../context/CartContext';
 
 interface TopHeaderProps {
   onMenuToggle: () => void;
   onCartClick: () => void;
-  onLoginClick: () => void; // <-- NEW PROP
+  // --- REMOVED onLoginClick prop ---
 }
 
-const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle, onCartClick, onLoginClick }) => { // <-- Get prop
+const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle, onCartClick }) => { // <-- REMOVED onLoginClick
   const router = useIonRouter();
   const { getCartItemCount } = useCart();
   const cartItemCount = getCartItemCount();
-
-  // --- REMOVED goToLogin function ---
 
   const goToHome = () => {
     router.push('/home', 'root', 'replace');
@@ -34,10 +33,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle, onCartClick, onLogi
           <button className={styles.iconButton} onClick={onMenuToggle}>
             <IonIcon icon={menuOutline} />
           </button>
-          {/* --- UPDATED onClick --- */}
-          <button className={styles.iconButton} onClick={onLoginClick}>
-            <IonIcon icon={personOutline} />
-          </button>
+          {/* --- REMOVED person/login button --- */}
         </div>
 
         {/* --- MODIFIED CENTER GROUP --- */}
@@ -48,9 +44,7 @@ const TopHeader: React.FC<TopHeaderProps> = ({ onMenuToggle, onCartClick, onLogi
         {/* --- END MODIFIED GROUP --- */}
 
         <div className={styles.rightGroup}>
-          <button className={styles.iconButton}>
-            <IonIcon icon={searchOutline} />
-          </button>
+          {/* --- REMOVED search button --- */}
           <button className={`${styles.iconButton} ${styles.cartButtonContainer}`} onClick={handleCartClick}>
             <IonIcon icon={cartOutline} />
             {cartItemCount > 0 && (
