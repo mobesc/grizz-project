@@ -1,0 +1,42 @@
+/* src/pages/ProductInfo/ProductInfo.module.css */
+
+.mainContainer {
+  background-color: #f9f9f9; /* Light background */
+  color: #18181b; /* Dark text */
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100%;
+  padding-top: 80px; /* Space for the floating TopHeader */
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.container {
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.sectionHeader {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.75rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.sectionUnderline {
+  width: 6rem;
+  height: 4px;
+  background-color: #facc15;
+  margin: 0 auto 2rem auto;
+}
+
+.infoText {
+  font-size: 1.1rem;
+  color: #3f3f46; /* Dark text */
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}

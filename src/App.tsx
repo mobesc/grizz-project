@@ -16,7 +16,10 @@ import Beers from './pages/Beers/Beers';
 import About from './pages/About/About';
 import History from './pages/History/History';
 import ProductPage from './pages/ProductPage/ProductPage';
-import Account from './pages/Account/Account'; // <-- IMPORT ACCOUNT PAGE
+import Account from './pages/Account/Account';
+import ProductInfo from './pages/ProductInfo/ProductInfo'; // <-- NEW IMPORT
+import Developers from './pages/Developers/Developers'; // <-- NEW IMPORT
+import Contact from './pages/Contact/Contact'; // <-- NEW IMPORT
 
 // Import Global UI Components
 import TopHeader from './components/TopHeader/TopHeader';
@@ -117,13 +120,13 @@ const App: React.FC = () => {
               {/* Product Detail Route */}
               <Route exact path="/beer/:productId" component={ProductPage} />
 
-              {/* Side Menu Routes */}
+              {/* --- UPDATED Side Menu Routes --- */}
               <Route exact path="/history" component={History} />
-              <Route exact path="/product-info" component={Home} />
-              <Route exact path="/developers" component={Home} />
-              <Route exact path="/contact" component={Home} />
+              <Route exact path="/product-info" component={ProductInfo} />
+              <Route exact path="/developers" component={Developers} />
+              <Route exact path="/contact" component={Contact} />
 
-              {/* --- NEW ACCOUNT ROUTE --- */}
+              {/* Account Route */}
               <Route exact path="/account" component={Account} />
 
               {/* Default Redirect */}

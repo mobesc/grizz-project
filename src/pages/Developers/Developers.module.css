@@ -1,0 +1,82 @@
+/* src/pages/Developers/Developers.module.css */
+
+.mainContainer {
+  background-color: #f9f9f9;
+  color: #18181b;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100%;
+  padding-top: 80px;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.container {
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.sectionHeader {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.75rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.sectionUnderline {
+  width: 6rem;
+  height: 4px;
+  background-color: #facc15;
+  margin: 0 auto 2rem auto;
+}
+
+.devText {
+  font-size: 1.1rem;
+  color: #3f3f46;
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.techStack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  text-align: center;
+}
+
+.techItem {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+
+.techIcon {
+  font-size: 3rem;
+  color: #facc15;
+  margin-bottom: 1rem;
+}
+
+.techItem h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #18181b;
+  margin-bottom: 0.5rem;
+}
+
+.techItem p {
+  font-size: 1rem;
+  color: #52525b;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .techStack {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
