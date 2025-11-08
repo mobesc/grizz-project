@@ -140,6 +140,14 @@
   font-size: 0.9rem;
 }
 
+/* --- NEW STYLE --- */
+.itemPackage {
+  font-size: 0.8rem;
+  color: #71717a;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
 .itemQty {
   font-size: 0.8rem;
   color: #71717a;
@@ -176,4 +184,5 @@
   margin-top: 1.5rem;
   --border-radius: 4px;
   font-size: 1rem;
+  cursor: not-allowed; /* <-- Shows it's not clickable */
 }

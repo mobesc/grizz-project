@@ -30,6 +30,7 @@ interface CartItem {
   imageUrl?: string;
   quantity: number;
   type?: string; 
+  volume?: string; // <-- ADDED
 }
 
 const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
@@ -88,7 +89,8 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                   {/* Details */}
                   <div className={styles.itemDetails}>
                     <h2 className={styles.itemName}>{item.name}</h2>
-                    <p className={styles.itemPackage}>{item.type || '6-Pack'}</p> 
+                    {/* --- UPDATED LINE --- */}
+                    <p className={styles.itemPackage}>{item.volume || '6-Pack'}</p> 
                     
                     <div className={styles.itemControls}>
                       <div className={styles.quantitySelector}>

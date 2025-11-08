@@ -10,6 +10,7 @@ interface CartItem {
   quantity: number;
   selectedPackage?: string; // Keep track of the selected package if applicable
   type?: string; // For "Golden Ale", etc.
+  volume?: string; // <-- NEW: To store "6-Pack (12oz Cans)"
 }
 
 // --- MODIFIED: Added clearCart ---
@@ -75,6 +76,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
             imageUrl: itemToAdd.imageUrl,
             selectedPackage: itemToAdd.selectedPackage, // Will be undefined if not provided
             type: itemToAdd.type, // Add the type
+            volume: itemToAdd.volume, // <-- NEW: Add the volume
             quantity: 1
         };
         // Filter out any potential extra properties from itemToAdd before adding

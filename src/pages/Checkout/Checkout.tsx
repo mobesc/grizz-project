@@ -24,7 +24,7 @@ import {
   IonListHeader,
   IonRadio
 } from '@ionic/react';
-import { cardOutline, cashOutline, checkmarkCircleOutline } from 'ionicons/icons';
+import { cardOutline, cashOutline } from 'ionicons/icons';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import styles from './Checkout.module.css';
@@ -37,7 +37,7 @@ const Checkout: React.FC = () => {
   
   const [paymentMethod, setPaymentMethod] = useState('creditcard');
 
-  // --- Protection Effect ---
+  // --- Protection Effect (unchanged) ---
   useEffect(() => {
     // 1. Redirect if not logged in
     if (!user) {
@@ -58,29 +58,12 @@ const Checkout: React.FC = () => {
     }
   }, [user, cartItems, router, presentToast]);
 
-  // --- Calculations ---
+  // --- Calculations (unchanged) ---
   const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   const shipping = 50.00; // Mock shipping fee
   const total = subtotal + shipping;
 
-  const handlePlaceOrder = (e: React.FormEvent) => {
-    e.preventDefault();
-    // This is where you would normally call a payment API
-    
-    // Show mock success message
-    presentToast({
-      message: 'Order placed successfully!',
-      duration: 3000,
-      color: 'success',
-      icon: checkmarkCircleOutline
-    });
-
-    // Clear the cart
-    clearCart();
-
-    // Redirect to home
-    router.push('/home', 'root', 'replace');
-  };
+  // --- handlePlaceOrder function REMOVED ---
 
   // Don't render if checks haven't passed
   if (!user || cartItems.length === 0) {
@@ -99,9 +82,10 @@ const Checkout: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen className={styles.mainContainer}>
-        <form onSubmit={handlePlaceOrder}>
+        {/* --- onSubmit handler REMOVED --- */}
+        <form>
           <IonGrid className={styles.grid}>
-            {/* --- Column 1: Shipping & Payment --- */}
+            {/* --- Column 1: Shipping & Payment (unchanged) --- */}
             <IonRow>
               <IonCol size="12" size-md="7" className={styles.formColumn}>
                 
@@ -145,7 +129,7 @@ const Checkout: React.FC = () => {
                   </IonItem>
                 </IonRadioGroup>
 
-                {/* --- Mock Credit Card Form (shows conditionally) --- */}
+                {/* --- Mock Credit Card Form (unchanged) --- */}
                 {paymentMethod === 'creditcard' && (
                   <IonList className={`${styles.formList} ${styles.nestedForm}`}>
                      <IonItem className={styles.formItem}>
@@ -171,7 +155,7 @@ const Checkout: React.FC = () => {
 
               </IonCol>
 
-              {/* --- Column 2: Order Summary --- */}
+              {/* --- Column 2: Order Summary (UPDATED) --- */}
               <IonCol size="12" size-md="5" className={styles.summaryColumn}>
                 <div className={styles.summaryBox}>
                   <h2 className={styles.summaryTitle}>Order Summary</h2>
@@ -181,6 +165,8 @@ const Checkout: React.FC = () => {
                         <img src={item.imageUrl} alt={item.name} className={styles.itemImage} />
                         <div className={styles.itemDetails}>
                           <span className={styles.itemName}>{item.name}</span>
+                          {/* --- ADDED THIS LINE --- */}
+                          <span className={styles.itemPackage}>{item.volume || ''}</span>
                           <span className={styles.itemQty}>Qty: {item.quantity}</span>
                         </div>
                         <span className={styles.itemPrice}>₱{(item.price * item.quantity).toFixed(2)}</span>
@@ -200,9 +186,10 @@ const Checkout: React.FC = () => {
                     <span>₱{total.toFixed(2)}</span>
                   </div>
                   <IonButton 
-                    type="submit" 
+                    type="button" 
                     expand="block" 
                     className={styles.placeOrderButton}
+                    onClick={(e) => e.preventDefault()}
                   >
                     Place Order
                   </IonButton>
