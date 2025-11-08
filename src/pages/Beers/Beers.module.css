@@ -32,7 +32,7 @@
   margin: 0 auto 2rem auto;
 }
 
-/* --- NEW STYLES FOR BUTTONS --- */
+/* --- STYLES FOR BUTTONS --- */
 .controlsContainer {
   display: flex;
   justify-content: center;
@@ -52,14 +52,14 @@
   --background-hover: #f9f9f9;
 }
 
-/* --- UPDATED GRID STYLES --- */
+/* --- GRID STYLES --- */
 .beerGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2-column grid */
   gap: 1rem; /* Spacing between cards */
 }
 
-/* --- UPDATED CARD STYLES --- */
+/* --- CARD STYLES --- */
 .beerCard {
   background: #ffffff;
   border-radius: 8px;
@@ -103,6 +103,15 @@
   text-transform: uppercase;
 }
 
+/* --- NEW STYLE FOR VOLUME/SUB-LABEL --- */
+.beerVolume {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  color: #71717a; /* Lighter text color */
+  margin: 0 0 0.5rem 0; /* Spacing between name and price */
+  text-transform: uppercase;
+}
+
 .beerPrice {
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
@@ -116,4 +125,35 @@
   .beerGrid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* --- PAGINATION CONTROLS --- */
+.paginationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 2rem;
+}
+
+.pageButton {
+  --color: #18181b;
+  --color-hover: #000;
+  --background: transparent;
+  --background-hover: #f0f0f0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  --border-radius: 4px;
+  min-width: 40px; /* Ensure round/square shape for icon buttons */
+}
+
+.pageButton.active {
+  --background: #facc15;
+  --color: #000;
+  --background-hover: #eab308;
+}
+
+.pageButton[disabled] {
+  --color: #c0c0c0;
+  --background: transparent;
 }

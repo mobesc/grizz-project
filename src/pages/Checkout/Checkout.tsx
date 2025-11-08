@@ -135,7 +135,7 @@ const Checkout: React.FC = () => {
                   <IonListHeader className={styles.listHeader}>Payment Method</IonListHeader>
                   <IonItem lines="none" className={styles.radioItem}>
                     <IonIcon icon={cardOutline} slot="start" />
-                    <IonLabel>Credit Card (Mock)</IonLabel>
+                    <IonLabel>Credit Card</IonLabel>
                     <IonRadio slot="end" value="creditcard"></IonRadio>
                   </IonItem>
                   <IonItem lines="none" className={styles.radioItem}>
