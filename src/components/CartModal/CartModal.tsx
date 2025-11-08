@@ -10,9 +10,10 @@ import {
   IonButton,
   IonContent,
   IonIcon,
-  IonFooter
+  IonFooter,
+  useIonRouter // <-- NEW IMPORT
 } from '@ionic/react';
-import { closeOutline } from 'ionicons/icons'; // <-- REMOVED trashOutline
+import { closeOutline } from 'ionicons/icons'; 
 import { useCart } from '../../context/CartContext';
 import styles from './CartModal.module.css';
 
@@ -28,17 +29,23 @@ interface CartItem {
   price: number;
   imageUrl?: string;
   quantity: number;
-  type?: string; // Added 'type' to match "Golden Ale" or "Case (24 Bottles)"
+  type?: string; 
 }
 
 const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
-  // --- REMOVED clearCart from useCart ---
   const { cartItems, removeFromCart, updateItemQuantity } = useCart();
+  const router = useIonRouter(); // <-- NEW: Get router
 
   // Calculate the total price
   const subtotal = cartItems.reduce((total, item) => {
     return total + (item.price * item.quantity);
   }, 0);
+
+  // --- NEW: Handle checkout navigation ---
+  const handleCheckout = () => {
+    onClose(); // Close the modal
+    router.push('/checkout'); // Navigate to the checkout page
+  };
 
   return (
     <IonModal 
@@ -67,7 +74,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
             </IonButton>
           </div>
         ) : (
-          <> {/* Use Fragment to hold multiple root elements */}
+          <> 
             <div className={styles.itemList}>
               {cartItems.map((item: CartItem) => (
                 <div key={item.id} className={styles.cartItem}>
@@ -81,7 +88,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
                   {/* Details */}
                   <div className={styles.itemDetails}>
                     <h2 className={styles.itemName}>{item.name}</h2>
-                    <p className={styles.itemPackage}>{item.type || '6-Pack'}</p> {/* Fallback to 6-pack */}
+                    <p className={styles.itemPackage}>{item.type || '6-Pack'}</p> 
                     
                     <div className={styles.itemControls}>
                       <div className={styles.quantitySelector}>
@@ -127,15 +134,17 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
         <IonFooter className={styles.modalFooter}>
           <div className={styles.subtotal}>
             <span>Subtotal</span>
-            {/* Price (CURRENCY CHANGE) */}
             <span>₱{subtotal.toFixed(2)}</span>
           </div>
           <p className={styles.footerText}>Tax included and shipping calculated at checkout</p>
-          <IonButton expand="block" className={styles.checkoutButton}>
+          {/* --- MODIFIED: Added onClick handler --- */}
+          <IonButton 
+            expand="block" 
+            className={styles.checkoutButton}
+            onClick={handleCheckout} 
+          >
             CHECK OUT
           </IonButton>
-          
-          {/* --- REMOVED CLEAR CART BUTTON --- */}
           
         </IonFooter>
       )}

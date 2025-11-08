@@ -12,13 +12,14 @@ interface CartItem {
   type?: string; // For "Golden Ale", etc.
 }
 
-// --- REMOVED clearCart from the interface ---
+// --- MODIFIED: Added clearCart ---
 interface CartContextState {
   cartItems: CartItem[];
   addToCart: (item: any) => void; // Function to add items
   getCartItemCount: () => number; // Function to get total item count
   removeFromCart: (itemId: string) => void; 
   updateItemQuantity: (itemId: string, newQuantity: number) => void; 
+  clearCart: () => void; // <-- NEW
 }
 
 // Create the context
@@ -105,7 +106,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     }
   };
 
-  // --- REMOVED clearCart function ---
+  // --- NEW: clearCart function ---
+  const clearCart = () => {
+    setCartItems([]);
+  };
 
   const getCartItemCount = () => {
      // Sum up quantities of all items
@@ -119,8 +123,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         addToCart, 
         getCartItemCount, 
         removeFromCart,
-        updateItemQuantity
-        // --- REMOVED clearCart from value ---
+        updateItemQuantity,
+        clearCart // <-- NEW
       }}
     >
       {children}

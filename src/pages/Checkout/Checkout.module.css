@@ -1,0 +1,179 @@
+/* src/pages/Checkout/Checkout.module.css */
+
+.mainContainer {
+  --background: #f9f9f9;
+  --padding-top: 1rem;
+}
+
+.grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.formColumn {
+  padding-bottom: 2rem;
+}
+
+.formList {
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  overflow: hidden;
+}
+
+.nestedForm {
+  margin: -1rem 0 1.5rem 2.5rem; /* Indent the credit card form */
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.listHeader {
+  --background: #f9f9f9;
+  --border-width: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  color: #18181b;
+}
+
+/* Styles copied from Account.module.css for consistency */
+.formItem {
+  --background: #ffffff;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.formList ion-item:last-child {
+  border-bottom: none;
+}
+.formItem ion-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #71717a;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+}
+.formItem ion-input {
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+.radioItem {
+  --background: #ffffff;
+  --padding-start: 1rem;
+  --inner-padding-end: 1rem;
+}
+.radioItem ion-label {
+  font-family: 'Montserrat', sans-serif;
+}
+.radioItem ion-icon {
+  margin-right: 1rem;
+  color: #71717a;
+}
+.radioItem ion-radio {
+  --color: #ddd;
+  --color-checked: #facc15;
+}
+
+/* --- Summary Column --- */
+.summaryColumn {
+  padding-top: 0.5rem;
+}
+
+.summaryBox {
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: sticky; /* Makes summary stick on desktop */
+  top: 1.5rem;
+}
+
+.summaryTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  color: #18181b;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.summaryList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.summaryItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.itemDetails {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.itemName {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.itemQty {
+  font-size: 0.8rem;
+  color: #71717a;
+}
+
+.itemPrice {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #3f3f46;
+  padding: 0.75rem 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.grandTotal {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #18181b;
+}
+
+.placeOrderButton {
+  --background: #18181b; /* Dark background */
+  --color: #ffffff;
+  --background-hover: #3f3f46;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 1.5rem;
+  --border-radius: 4px;
+  font-size: 1rem;
+}

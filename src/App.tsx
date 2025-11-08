@@ -17,9 +17,10 @@ import About from './pages/About/About';
 import History from './pages/History/History';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Account from './pages/Account/Account';
-import ProductInfo from './pages/ProductInfo/ProductInfo'; // <-- NEW IMPORT
-import Developers from './pages/Developers/Developers'; // <-- NEW IMPORT
-import Contact from './pages/Contact/Contact'; // <-- NEW IMPORT
+import ProductInfo from './pages/ProductInfo/ProductInfo'; 
+import Developers from './pages/Developers/Developers'; 
+import Contact from './pages/Contact/Contact'; 
+import Checkout from './pages/Checkout/Checkout'; // <-- NEW IMPORT
 
 // Import Global UI Components
 import TopHeader from './components/TopHeader/TopHeader';
@@ -128,6 +129,9 @@ const App: React.FC = () => {
 
               {/* Account Route */}
               <Route exact path="/account" component={Account} />
+
+              {/* --- NEW CHECKOUT ROUTE --- */}
+              <Route exact path="/checkout" component={Checkout} />
 
               {/* Default Redirect */}
               <Redirect exact from="/" to="/home" />
